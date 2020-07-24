@@ -1,4 +1,50 @@
+/* Colors:
+
+MEGA DUNGEON:
+red: #BE5E6F
+purple: #5F508A
+blue: #A19AC1
+yellow: #F3A643
+orange: #DA7E48
+
+LP MINNY SKYLINE\
+blue #768FA6
+light blue #8D9FA6
+silt #A69580
+light brown #A67041
+brown #402318
+lavender #d1a9c7
+*/
+
 .App {
-  margin: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Yeseva One', cursive;
 }
+
+body {
+  font-family: 'Yeseva One', cursive;
+  margin: 0 0 0 0; 
+}
+
+h1 {
+  font-weight: normal;
+  color: #d1a9c7;
+}
+
+/* DELETE THESE */
+.NavButton {
+  padding: 20px;
+  background-color: black;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  color: #d1a9c7;
+  transition: color 1s;
+  font-family: 'Yeseva One', cursive;
+  font-size: medium;
+}
+
+.NavButton:hover {
+  color: white;
+}
+
+
