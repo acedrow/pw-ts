@@ -7,6 +7,12 @@ import { CardContext } from '../CardContext'
 export const GearCard = (props: { cardData: CardData }) => {
   const { cardInteractionHandler } = useContext(CardContext)
   const [cardData, setCardData] = useState<CardData>(new CardData())
+
+  const getBorderStyle = () => {
+    if (cardData.isSelected) return '2px solid red'
+    return '2px solid black'
+  }
+
   //Initialize cardData stateful values
   useEffect(() => {
     const thisCardData: CardData = { ...props.cardData }
@@ -14,11 +20,12 @@ export const GearCard = (props: { cardData: CardData }) => {
     setCardData(thisCardData);
   },[])
 
+  //TODO: testing delete
+  useEffect(() => {
+   // console.log('CARD DATA: ' + JSON.stringify(cardData))
+  }, [cardData])
 
-  const getBorderStyle = () => {
-    if (cardData.isSelected) return '2px solid red'
-    return '2px solid black'
-  }
+
 
   return (
     <GearCardSquare
@@ -39,7 +46,7 @@ export const GearCard = (props: { cardData: CardData }) => {
 }
 
 const GearCardSquare = styled.div<{ borderVal: string }>`
-  background-color: 'beige';
+  background-color: beige;
   border: ${(props) => props.borderVal};
   height: 100px;
   width: 100px;

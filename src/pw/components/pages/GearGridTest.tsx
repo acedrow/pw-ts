@@ -28,7 +28,8 @@ export const GearGridTest = () => {
   return (
     <CardContextProvider>
       <div>
-        <GearCard cardData={new CardData(false, TEST_GAME_DATA, undefined, false, undefined)}></GearCard>
+        <GearCard cardData={new CardData(false, TEST_GAME_DATA, undefined, false)}></GearCard>
+        <GearCard cardData={new CardData()}></GearCard>
       </div>
     </CardContextProvider>
   )
