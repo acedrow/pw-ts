@@ -1,7 +1,7 @@
 import { lavender } from "../styling/color"
 import * as React from "react"
-import { NavElement, NavElementType } from "NavElement"
 import styled from "styled-components"
+import { NavElement, NavElementType } from "./NavElement"
 
 export const mouseOverColor = 'white'
 export const baseColor = lavender

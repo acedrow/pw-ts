@@ -1,8 +1,8 @@
 import { useState, useEffect, CSSProperties } from "react"
 import * as React from "react"
-import { mouseOverColor, baseColor } from "Topnav"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { mouseOverColor, baseColor } from "./Topnav"
 
 export interface NavElProps {
   navItemText: string;

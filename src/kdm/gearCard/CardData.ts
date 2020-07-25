@@ -73,14 +73,14 @@ export class GameData {
 export class CardData {
   isSource: boolean
   gameData: GameData
-  setGameData: (gameData: GameData) => void
+  setCardData: (cardData: CardData) => void
   isSelected: boolean;
   setIsSelected: (selected: boolean) => void
 
   constructor(
     isSource?: boolean,
     gameData?: GameData,
-    setGameData?: (gameData: GameData) => void,
+    setCardData?: (cardData: CardData) => void,
     isSelected?: boolean,
     setIsSelected?: (selected: boolean) => void
   ) {
@@ -88,7 +88,7 @@ export class CardData {
     this.gameData = gameData
       ? gameData
       : new GameData('', ARMOR_LOCATION.NONE, [], [], [])
-    this.setGameData = setGameData
+    this.setCardData = setCardData
     this.isSelected = isSelected ? isSelected : false;
     this.setIsSelected = setIsSelected
   }

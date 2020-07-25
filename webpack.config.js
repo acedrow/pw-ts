@@ -27,7 +27,7 @@ module.exports = {
   resolve: { extensions: ["*", ".ts", ".tsx", ".js", ".jsx"] },
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/dist",
+    publicPath: "/",
     filename: "bundle.js",
   },
   devServer: {
@@ -35,6 +35,7 @@ module.exports = {
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true,
+    historyApiFallback: true,
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
 };

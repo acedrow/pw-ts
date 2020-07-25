@@ -2,7 +2,12 @@ import * as React from 'react'
 import { CardData } from './gearCard/CardData'
 import { useState } from 'react'
 
-export const CardContext = React.createContext({})
+interface CardContext {
+  cardInteractionHandler: (cardData: CardData) => void
+}
+
+const context = {} as CardContext
+export const CardContext = React.createContext<CardContext>(context)
 
 export const CardContextProvider = (props: any) => {
   const [gearCardTarget, setGearCardTarget] = useState<CardData>(new CardData())
@@ -10,19 +15,15 @@ export const CardContextProvider = (props: any) => {
 
   const cardInteractionHandler = (cardData: CardData) => {
     if (cardData.isSource) {
-      setGearCardSource({ ...cardData })
-      cardData.setIsSelected(true)
+      setGearCardSource({ ...cardData, isSelected: true })
     } else {
       if (cardData.gameData.isEmpty) {
-        setGearCardTarget({ ...cardData })
-        cardData.setIsSelected(true)
+        setGearCardTarget({ ...cardData, isSelected: true })
       } else {
         if (!gearCardTarget.isSelected && gearCardSource.isSelected) {
-          setGearCardTarget({ ...cardData })
-          cardData.setIsSelected(true)
+          setGearCardTarget({ ...cardData, isSelected: true })
         } else if (gearCardTarget.isSelected && !gearCardSource.isSelected) {
-          setGearCardSource({ ...cardData })
-          cardData.setIsSelected(true)
+          setGearCardSource({ ...cardData, isSelected: true })
         } else clearCardContextData()
       }
     }
