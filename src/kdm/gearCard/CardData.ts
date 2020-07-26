@@ -1,3 +1,4 @@
+import { PIP_RED, PIP_GREEN, PIP_BLUE } from '../../pw/components/styling/color';
 export enum ARMOR_LOCATION {
   ARMS = 'arms',
   LEGS = 'legs',
@@ -14,15 +15,21 @@ export enum AFFINITY_POSITION {
   LEFT = 'left',
 }
 
-export enum AFFINITY_COLOR {
-  RED = 'red',
-  BLUE = 'blue',
-  GREEN = 'green',
+export interface AffinityColorObj {
+  RED: string;
+  BLUE: string;
+  GREEN: string;
+}
+
+export const AFFINITY_COLOR : AffinityColorObj = {
+  RED: PIP_RED,
+  BLUE: PIP_BLUE,
+  GREEN: PIP_GREEN,
 }
 
 export interface Affinity {
-  position: AFFINITY_POSITION
-  color: AFFINITY_COLOR
+  position: AFFINITY_POSITION;
+  color: string;
 }
 
 export interface WeaponStats {
@@ -53,6 +60,7 @@ export class GameData {
     this.keywords = keywords
     this.specialRules = specialRules
     this.affinities = affinities
+    this.weaponStats = weaponStats
   }
 
   //TODO: test me!

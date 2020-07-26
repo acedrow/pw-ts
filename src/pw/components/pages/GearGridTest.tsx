@@ -12,17 +12,17 @@ import {
 export const GearGridTest = () => {
 
   const TEST_GAME_DATA = new GameData(
-    'Test Card',
+    'Lance of Longinus',
     ARMOR_LOCATION.TORSO,
-    ['keyword1', 'keyword2'],
-    ['specialRule'],
+    ['weapon', 'melee', 'spear', 'two-handed', 'bone'],
+    ['Irreplaceable', 'Reach 2'],
     [
       { position: AFFINITY_POSITION.TOP, color: AFFINITY_COLOR.RED },
       { position: AFFINITY_POSITION.RIGHT, color: AFFINITY_COLOR.BLUE },
       { position: AFFINITY_POSITION.LEFT, color: AFFINITY_COLOR.GREEN },
       { position: AFFINITY_POSITION.BOTTOM, color: AFFINITY_COLOR.RED },
     ],
-    { activationCost: 1, speed: 2, accuracy: 5, strength: 3 }
+    { activationCost: 1, speed: 2, accuracy: 6, strength: 9 }
   )
 
   return (

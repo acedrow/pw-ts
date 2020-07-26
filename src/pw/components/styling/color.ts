@@ -16,6 +16,13 @@ brown #402318
 lavender #d1a9c7
 */
 
+//KDM Organizer Colors:
+export const CARD_BACKGROUND = 'beige'
+export const LIGHT_GREY = '#b5b5b5'
+export const PIP_BLUE = '#51799c'
+export const PIP_GREEN = '#519c51'
+export const PIP_RED = '#9c5151'
+
 export const blue = '#768FA6'
 export const lightBlue = '#8D9FA6'
 export const silt = '#A69580'

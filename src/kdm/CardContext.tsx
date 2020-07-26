@@ -57,11 +57,13 @@ export const CardContextProvider = (props: any) => {
   const swapCardValues = () => {
     console.log('swap card values')
     const tempCardData: CardData = { ...gearCardSource }
-    gearCardSource.setCardData({
-      ...gearCardTarget,
-      setCardData: gearCardSource.setCardData,
-      isSelected: false,
-    })
+    if (!gearCardSource.isSource){
+      gearCardSource.setCardData({
+        ...gearCardTarget,
+        setCardData: gearCardSource.setCardData,
+        isSelected: false,
+      })
+    }
     gearCardTarget.setCardData({
       ...tempCardData,
       setCardData: gearCardTarget.setCardData,
