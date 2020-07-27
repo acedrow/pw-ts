@@ -22,20 +22,13 @@ export const GearCard = (props: { cardData: CardData }) => {
     setCardData(thisCardData)
   }, [])
 
-  //TODO: testing delete
-  useEffect(() => {
-    console.log('CARD DATA: ' + JSON.stringify(cardData))
-  }, [cardData])
-
   return (
     <GearCardSquare
-      onClick={() => {
+      onClick={(e) => {
         console.log(`Gear Card ${cardData.gameData.cardName} clicked`)
-        cardInteractionHandler(cardData)
-      }}
-      onTouchStart={() => {
-        console.log(`Gear Card ${cardData.gameData.cardName} clicked`)
-        cardInteractionHandler(cardData)
+        cardInteractionHandler(cardData, e)
+        e.stopPropagation()
+        e.preventDefault
       }}
       borderVal={getBorderStyle()}
     >

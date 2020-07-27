@@ -44,7 +44,7 @@ export const Topnav = () => {
         <NavElement
           navItemText="*"
           elementType={NavElementType.link}
-          linkDest="/dragTest"
+          linkDest="/kdm-test"
           style={NavElementStyle}
         ></NavElement>
       </TopNavContainer>

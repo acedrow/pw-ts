@@ -16,11 +16,23 @@ brown #402318
 lavender #d1a9c7
 */
 
+html {
+  height: 100%;
+  width: 100%;
+}
+
 .App {
   font-family: 'Yeseva One', cursive;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
 }
 
 body {
+  height: 100%;
+  width: 100%;
   font-family: 'Yeseva One', cursive;
   margin: 0 0 0 0; 
 }

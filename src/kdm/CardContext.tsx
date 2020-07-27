@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { CardData } from './gearCard/CardData'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, SyntheticEvent } from 'react'
 
 interface CardContext {
-  cardInteractionHandler: (cardData: CardData) => void
+  cardInteractionHandler: (cardData: CardData, event?: any) => void
 }
 
 const context = {} as CardContext
@@ -13,9 +13,14 @@ export const CardContextProvider = (props: any) => {
   const [gearCardTarget, setGearCardTarget] = useState<CardData>(new CardData())
   const [gearCardSource, setGearCardSource] = useState<CardData>(new CardData())
 
-  const cardInteractionHandler = (cardData: CardData) => {
+  const cardInteractionHandler = (
+    cardData: CardData,
+    event?: SyntheticEvent
+  ) => {
+    event.stopPropagation()
+    event.preventDefault
     console.log(
-      `target: ${gearCardTarget.gameData.cardName} source: ${gearCardSource.gameData.cardName}`
+      `target: ${gearCardTarget.gameData.cardName} source: ${gearCardSource.gameData.cardName} `
     )
     if (cardData.isSelected) {
       cardData.setCardData({ ...cardData, isSelected: false })
@@ -57,7 +62,7 @@ export const CardContextProvider = (props: any) => {
   const swapCardValues = () => {
     console.log('swap card values')
     const tempCardData: CardData = { ...gearCardSource }
-    if (!gearCardSource.isSource){
+    if (!gearCardSource.isSource) {
       gearCardSource.setCardData({
         ...gearCardTarget,
         setCardData: gearCardSource.setCardData,
