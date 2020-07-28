@@ -7,7 +7,7 @@ export interface BgiProps {
   bgColor?: string
 }
 
-export const BackgroundImage = (props: BgiProps) => {
+export const Background = (props: BgiProps) => {
   // const bgStyle = {
   //   width: '100vw',
   //   height: '100vh',

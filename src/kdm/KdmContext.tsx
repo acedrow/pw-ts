@@ -2,14 +2,14 @@ import * as React from 'react'
 import { CardData } from './gearCard/CardData'
 import { useState, useEffect, SyntheticEvent } from 'react'
 
-interface CardContext {
+interface KdmContext {
   cardInteractionHandler: (cardData: CardData, event?: any) => void
 }
 
-const context = {} as CardContext
-export const CardContext = React.createContext<CardContext>(context)
+const context = {} as KdmContext
+export const KdmContext = React.createContext<KdmContext>(context)
 
-export const CardContextProvider = (props: any) => {
+export const KdmContextProvider = (props: any) => {
   const [gearCardTarget, setGearCardTarget] = useState<CardData>(new CardData())
   const [gearCardSource, setGearCardSource] = useState<CardData>(new CardData())
 
@@ -82,8 +82,8 @@ export const CardContextProvider = (props: any) => {
   }
 
   return (
-    <CardContext.Provider value={{ cardInteractionHandler }}>
+    <KdmContext.Provider value={{ cardInteractionHandler }}>
       {props.children}
-    </CardContext.Provider>
+    </KdmContext.Provider>
   )
 }

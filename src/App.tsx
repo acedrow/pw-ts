@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import './App.css'
 import { GlobalContextProvider } from './GlobalContext'
-import { GearGridTest } from './pw/components/pages/GearGridTest'
+import { KdmTracker } from './pw/components/pages/KdmTracker'
 import { Homepage } from './pw/components/pages/Homepage'
 import { Resume } from './pw/components/pages/Resume'
 
@@ -18,7 +18,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Homepage}></Route>
                 <Route exact path="/resume" component={Resume}></Route>
-                <Route exact path="/kdm-test" component={GearGridTest}></Route>
+                <Route exact path="/kdm-test" component={KdmTracker}></Route>
               </Switch>
             </MainContentContainer>
           </BrowserRouter>

@@ -2,18 +2,18 @@ import * as React from 'react'
 import { Blurb } from './Blurb'
 import styled from 'styled-components'
 import { Topnav } from '../topnav/Topnav'
-import { BackgroundImage } from './BackgroundImage'
+import { Background } from './Background'
 
 export const Homepage = () => {
   return (
-    <BackgroundImage imageUrl="https://i.imgur.com/P9gbnLf.jpg">
+    <Background imageUrl="https://i.imgur.com/P9gbnLf.jpg">
       <OuterContentContainer id="outerContainer">
         <Topnav />
         <ContentContainer id="innerContainer">
           <Blurb></Blurb>
         </ContentContainer>
       </OuterContentContainer>
-    </BackgroundImage>
+    </Background>
   )
 }
 

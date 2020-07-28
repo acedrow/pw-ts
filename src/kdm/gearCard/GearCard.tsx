@@ -1,13 +1,13 @@
-import { GameData, CardData, AFFINITY_COLOR } from './CardData'
+import { GearCardData, CardData, AFFINITY_COLOR } from './CardData'
 import { useState, useContext, useEffect } from 'react'
 import * as React from 'react'
 import styled from 'styled-components'
-import { CardContext } from '../CardContext'
+import { KdmContext } from '../KdmContext'
 import { AffinityPips } from './AffinityPips'
 import { LIGHT_GREY, CARD_BACKGROUND } from '../../pw/components/styling/color'
 
 export const GearCard = (props: { cardData: CardData }) => {
-  const { cardInteractionHandler } = useContext(CardContext)
+  const { cardInteractionHandler } = useContext(KdmContext)
   const [cardData, setCardData] = useState<CardData>(new CardData())
 
   const getBorderStyle = () => {

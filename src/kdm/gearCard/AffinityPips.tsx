@@ -1,4 +1,4 @@
-import { Affinity, AFFINITY_POSITION, AFFINITY_COLOR } from './CardData'
+import { Affinity, AFF_POS, AFFINITY_COLOR } from './CardData'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -7,10 +7,10 @@ const PIP_LENGTH_SHORT = 5
 
 //col-start, col-end, row-start, row-end
 const pipPositionsMap = new Map([
-  [AFFINITY_POSITION.TOP, [4, 7, 0, 0]],
-  [AFFINITY_POSITION.RIGHT, [10, 10, 4, 7]],
-  [AFFINITY_POSITION.BOTTOM, [4, 7, 10, 10]],
-  [AFFINITY_POSITION.LEFT, [0, 0, 4, 7]],
+  [AFF_POS.TOP, [4, 7, 0, 0]],
+  [AFF_POS.RIGHT, [10, 10, 4, 7]],
+  [AFF_POS.BOTTOM, [4, 7, 10, 10]],
+  [AFF_POS.LEFT, [0, 0, 4, 7]],
 ])
 
 //TODO: replace with a hash map
@@ -34,7 +34,7 @@ export const AffinityPips = (props: { affinities: Affinity[] }) => {
 }
 
 const AffinityPipContainer = styled.div<{
-  position: AFFINITY_POSITION
+  position: AFF_POS
   gridColStart: number
   gridColEnd: number
   gridRowStart: number
@@ -42,19 +42,19 @@ const AffinityPipContainer = styled.div<{
   color: string
 }>`
   height: ${(props) =>
-    props.position === AFFINITY_POSITION.TOP ||
-    props.position === AFFINITY_POSITION.BOTTOM
+    props.position === AFF_POS.TOP ||
+    props.position === AFF_POS.BOTTOM
       ? PIP_LENGTH_SHORT
       : PIP_LENGTH_LONG}px;
   width: ${(props) =>
-    props.position === AFFINITY_POSITION.RIGHT ||
-    props.position === AFFINITY_POSITION.LEFT
+    props.position === AFF_POS.RIGHT ||
+    props.position === AFF_POS.LEFT
       ? PIP_LENGTH_SHORT
       : PIP_LENGTH_LONG}px;
   margin-left: ${(props) =>
-    props.position === AFFINITY_POSITION.RIGHT ? PIP_LENGTH_SHORT : 0}px;
+    props.position === AFF_POS.RIGHT ? PIP_LENGTH_SHORT : 0}px;
   margin-top: ${(props) =>
-    props.position === AFFINITY_POSITION.BOTTOM ? PIP_LENGTH_SHORT : 0}px;
+    props.position === AFF_POS.BOTTOM ? PIP_LENGTH_SHORT : 0}px;
   background-color: ${(props) => props.color};
   grid-column-start: ${(props) => props.gridColStart};
   grid-column-end: ${(props) => props.gridColEnd};

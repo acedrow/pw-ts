@@ -1,17 +1,17 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Topnav } from '../topnav/Topnav'
-import { BackgroundImage } from './BackgroundImage'
+import { Background } from './Background'
 
 export const Resume = () => {
   return (
-    <BackgroundImage imageUrl="https://i.imgur.com/P9gbnLf.jpg">
+    <Background imageUrl="https://i.imgur.com/P9gbnLf.jpg">
       <Topnav />
       <ResumePageContainer>
         <h1> RESUME TEST </h1>
         <SideMenu></SideMenu>
       </ResumePageContainer>
-    </BackgroundImage>
+    </Background>
   )
 }
 

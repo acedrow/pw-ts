@@ -1,5 +1,5 @@
-import { PIP_RED, PIP_GREEN, PIP_BLUE } from '../../pw/components/styling/color';
-export enum ARMOR_LOCATION {
+import { PIP_RED, PIP_GREEN, PIP_BLUE } from '../../pw/components/styling/color'
+export enum ARMOR_LOC {
   ARMS = 'arms',
   LEGS = 'legs',
   HEAD = 'head',
@@ -8,28 +8,22 @@ export enum ARMOR_LOCATION {
   NONE = 'none',
 }
 
-export enum AFFINITY_POSITION {
+export enum AFF_POS {
   TOP = 'top',
   RIGHT = 'right',
   BOTTOM = 'bottom',
   LEFT = 'left',
 }
 
-export interface AffinityColorObj {
-  RED: string;
-  BLUE: string;
-  GREEN: string;
-}
-
-export const AFFINITY_COLOR : AffinityColorObj = {
+export const AFFINITY_COLOR = {
   RED: PIP_RED,
   BLUE: PIP_BLUE,
   GREEN: PIP_GREEN,
 }
 
 export interface Affinity {
-  position: AFFINITY_POSITION;
-  color: string;
+  position: AFF_POS
+  color: string
 }
 
 export interface WeaponStats {
@@ -39,21 +33,33 @@ export interface WeaponStats {
   strength: number
 }
 
-export class GameData {
+export enum CRAFT_MAT {
+  HIDE = 'hide',
+}
+
+
+export interface CraftingCost {
+  craftMat: CRAFT_MAT
+  quantity: number
+}
+
+export class GearCardData {
   cardName: string
-  armorLocation: ARMOR_LOCATION
+  armorLocation: ARMOR_LOC
   keywords: string[]
   specialRules: string[]
   affinities: Affinity[]
   weaponStats?: WeaponStats
+  craftingCost?: CraftingCost[]
 
   constructor(
     cardName: string,
-    armorLocation: ARMOR_LOCATION,
+    armorLocation: ARMOR_LOC,
     keywords: string[],
     specialRules: string[],
     affinities: Affinity[],
-    weaponStats?: WeaponStats
+    weaponStats?: WeaponStats,
+    craftingCost?: CraftingCost[]
   ) {
     this.cardName = cardName
     this.armorLocation = armorLocation
@@ -61,17 +67,19 @@ export class GameData {
     this.specialRules = specialRules
     this.affinities = affinities
     this.weaponStats = weaponStats
+    this.craftingCost = craftingCost
   }
 
   //TODO: test me!
   isEmpty() {
     if (
       (!this.cardName || this.cardName === '') &&
-      this.armorLocation == ARMOR_LOCATION.NONE &&
+      this.armorLocation == ARMOR_LOC.NONE &&
       this.keywords.length === 0 &&
       this.specialRules.length === 0 &&
       this.affinities.length === 0 &&
-      !this.weaponStats
+      !this.weaponStats &&
+      !this.craftingCost
     )
       return true
     return false
@@ -80,22 +88,22 @@ export class GameData {
 
 export class CardData {
   isSource: boolean
-  gameData: GameData
+  gameData: GearCardData
   setCardData: (cardData: CardData) => void
-  isSelected: boolean;
+  isSelected: boolean
   setIsSelected: (selected: boolean) => void
 
   constructor(
     isSource?: boolean,
-    gameData?: GameData,
+    gameData?: GearCardData,
     setCardData?: (cardData: CardData) => void,
-    isSelected?: boolean,
+    isSelected?: boolean
   ) {
     this.isSource = isSource ? isSource : false
     this.gameData = gameData
       ? gameData
-      : new GameData('', ARMOR_LOCATION.NONE, [], [], [])
+      : new GearCardData('', ARMOR_LOC.NONE, [], [], [])
     this.setCardData = setCardData
-    this.isSelected = isSelected ? isSelected : false;
+    this.isSelected = isSelected ? isSelected : false
   }
 }
