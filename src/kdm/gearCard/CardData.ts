@@ -1,4 +1,5 @@
 import { PIP_RED, PIP_GREEN, PIP_BLUE } from '../../pw/components/styling/color'
+import { CRAFT_MAT } from '../data/gear/craftingMaterials'
 export enum ARMOR_LOC {
   ARMS = 'arms',
   LEGS = 'legs',
@@ -33,14 +34,17 @@ export interface WeaponStats {
   strength: number
 }
 
-export enum CRAFT_MAT {
-  HIDE = 'hide',
-}
-
-
-export interface CraftingCost {
+export class CraftingCost {
   craftMat: CRAFT_MAT
   quantity: number
+
+  constructor(
+    craftMat: CRAFT_MAT,
+    quantity: number,
+  ){
+    this.craftMat = craftMat;
+    this.quantity = quantity;
+  }
 }
 
 export class GearCardData {
@@ -103,7 +107,7 @@ export class CardData {
     this.gameData = gameData
       ? gameData
       : new GearCardData('', ARMOR_LOC.NONE, [], [], [])
-    this.setCardData = setCardData
+    this.setCardData = setCardData ? setCardData : () => {console.error('undefined setCardData')}
     this.isSelected = isSelected ? isSelected : false
   }
 }

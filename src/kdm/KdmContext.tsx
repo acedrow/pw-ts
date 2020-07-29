@@ -17,8 +17,8 @@ export const KdmContextProvider = (props: any) => {
     cardData: CardData,
     event?: SyntheticEvent
   ) => {
-    event.stopPropagation()
-    event.preventDefault
+    event?.stopPropagation()
+    event?.preventDefault
     console.log(
       `target: ${gearCardTarget.gameData.cardName} source: ${gearCardSource.gameData.cardName} `
     )

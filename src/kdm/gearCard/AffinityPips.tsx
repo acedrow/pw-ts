@@ -13,6 +13,12 @@ const pipPositionsMap = new Map([
   [AFF_POS.LEFT, [0, 0, 4, 7]],
 ])
 
+const getPipPosition = (pos: AFF_POS) => {
+  const toReturn = pipPositionsMap.get(pos);
+  if (!toReturn) console.error('Error retrieving affinity pip location')
+  return toReturn ? toReturn : [0,0,0,0]
+}
+
 //TODO: replace with a hash map
 export const AffinityPips = (props: { affinities: Affinity[] }) => {
   return (
@@ -21,10 +27,10 @@ export const AffinityPips = (props: { affinities: Affinity[] }) => {
         <AffinityPipContainer
           id={`affinity${index}`}
           position={affinity.position}
-          gridColStart={pipPositionsMap.get(affinity.position)[0]}
-          gridColEnd={pipPositionsMap.get(affinity.position)[1]}
-          gridRowStart={pipPositionsMap.get(affinity.position)[2]}
-          gridRowEnd={pipPositionsMap.get(affinity.position)[3]}
+          gridColStart={getPipPosition(affinity.position)[0]}
+          gridColEnd={getPipPosition(affinity.position)[1]}
+          gridRowStart={getPipPosition(affinity.position)[2]}
+          gridRowEnd={getPipPosition(affinity.position)[3]}
           color={affinity.color}
           key={index}
         ></AffinityPipContainer>

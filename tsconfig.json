@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
     "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
     "module": "es6",
     "target": "es5",
     "jsx": "react",
-    "allowJs": true
+    "lib": ["es6", "dom"],
+
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "noImplicitThis": true,
+
   }
 }

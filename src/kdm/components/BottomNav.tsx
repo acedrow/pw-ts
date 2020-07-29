@@ -6,27 +6,27 @@ import { LIGHT_GREY } from '../../pw/components/styling/color'
 export const BottomNav = () => {
   return (
     <BottomNavContainer>
-      <BottomNavLink to="/kdm-test" gridCol={1}>
+      <BottomNavLink to="/kdm-test" gridcol={1}>
         Settlement
       </BottomNavLink>
-      <BottomNavLink to="/kdm-test" gridCol={2}>
+      <BottomNavLink to="/kdm-test" gridcol={2}>
         Survivors
       </BottomNavLink>
-      <BottomNavLink to="/kdm-test" gridCol={3}>
+      <BottomNavLink to="/kdm-test" gridcol={3}>
         Settings
       </BottomNavLink>
-      <BottomNavLink to="/kdm-test" gridCol={4}>
+      <BottomNavLink to="/kdm-test" gridcol={4}>
         Search
       </BottomNavLink>
     </BottomNavContainer>
   )
 }
 
-const BottomNavLink = styled(Link)<{ gridCol: number }>`
+const BottomNavLink = styled(Link)<{ gridcol: number }>`
   background-color: ${LIGHT_GREY};
   border: 1px solid white;
-  grid-column-start: ${(props) => props.gridCol};
-  grid-column-end: ${(props) => props.gridCol};
+  grid-column-start: ${(props) => props.gridcol};
+  grid-column-end: ${(props) => props.gridcol};
 `
 
 const BottomNavContainer = styled.div`

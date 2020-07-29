@@ -48,7 +48,7 @@ export const NavElement = (props : NavElProps) => {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
           style={style}
-          to={props.linkDest}
+          to={props.linkDest ? props.linkDest : ''}
         >
           {' '}
           {props.navItemText}

@@ -20,7 +20,11 @@ export const Background = (props: BgiProps) => {
   // }
   console.log('imageUrl: ' + props.imageUrl)
   return (
-    <BackgroundImageDiv id ='background'imageUrl={props.imageUrl} bgColor={props.bgColor}>
+    <BackgroundImageDiv
+      id="background"
+      imageUrl={props.imageUrl ? props.imageUrl : ''}
+      bgColor={props.bgColor ? props.bgColor : ''}
+    >
       {props.children}
     </BackgroundImageDiv>
   )
@@ -30,7 +34,8 @@ const BackgroundImageDiv = styled.div<{ imageUrl: string; bgColor: string }>`
   width: 100%;
   height: 100%;
   max-width: 100%;
-  background-image: ${(props) => (props.imageUrl ? 'url(' + props.imageUrl + ')' : '')};
+  background-image: ${(props) =>
+    props.imageUrl ? 'url(' + props.imageUrl + ')' : ''};
   background-size: cover;
   background-color: ${(props) => (props.bgColor ? props.bgColor : '')};
   background-position: bottom;
