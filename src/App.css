@@ -42,21 +42,8 @@ h1 {
   color: #d1a9c7;
 }
 
-/* DELETE THESE */
-.NavButton {
-  padding: 20px;
-  background-color: black;
-  border: none;
-  outline: none;
-  overflow: hidden;
-  color: #d1a9c7;
-  transition: color 1s;
-  font-family: 'Yeseva One', cursive;
-  font-size: medium;
-}
-
-.NavButton:hover {
-  color: white;
+.MuiPaper-root{
+  background-color: black !important;
 }
 
 

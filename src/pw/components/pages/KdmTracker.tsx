@@ -9,10 +9,8 @@ import { Background } from './Background'
 
 export const KdmTracker = () => {
 
-
-
   return (
-    <TestContentContainer>
+    <TestContentContainer id={'kdmTracker'}>
       <Background bgColor={KDM_PAGE_BACKGROUND}>
         <KdmContextProvider>
           <GearDrawer></GearDrawer>

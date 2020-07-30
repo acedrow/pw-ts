@@ -1,13 +1,14 @@
 import { GearCardData, CardData, AFFINITY_COLOR } from './CardData'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext, useEffect, SyntheticEvent } from 'react'
 import * as React from 'react'
 import styled from 'styled-components'
 import { KdmContext } from '../KdmContext'
 import { AffinityPips } from './AffinityPips'
 import { LIGHT_GREY, CARD_BACKGROUND } from '../../pw/components/styling/color'
+import useLongPress from '../../util/useLongPress'
 
 export const GearCard = (props: { cardData: CardData }) => {
-  const { cardInteractionHandler } = useContext(KdmContext)
+  const { cardLongPressHandler, cardShortPressHandler } = useContext(KdmContext)
   const [cardData, setCardData] = useState<CardData>(new CardData())
 
   const getBorderStyle = () => {
@@ -22,14 +23,36 @@ export const GearCard = (props: { cardData: CardData }) => {
     setCardData(thisCardData)
   }, [])
 
+  const onLongPress = () => {
+    console.log('gearcard long press')
+    cardLongPressHandler(cardData)
+  }
+
+  const onClick = () => {
+    console.log('gearcard click')
+    cardShortPressHandler(cardData)
+  }
+
+  const defaultOptions = {
+    shouldPreventDefault: true,
+    delay: 500,
+  };
+
+  const longPressEvent = useLongPress(onLongPress, onClick, defaultOptions);
+
+
   return (
     <GearCardSquare
-      onClick={(e) => {
-        console.log(`Gear Card ${cardData.gameData.cardName} clicked`)
-        cardInteractionHandler(cardData, e)
-        e.stopPropagation()
-        e.preventDefault
-      }}
+    {...longPressEvent}
+    // onPointerDown={(e) => {
+    //   console.log(`pointer down`)
+    // }}
+    //   onClick={(e) => {
+    //     console.log(`Gear Card ${cardData.gameData.cardName} clicked`)
+    //     cardInteractionHandler(cardData, e)
+    //     e.stopPropagation()
+    //     e.preventDefault
+    //   }}
       borderVal={getBorderStyle()}
     >
       <CardDataHolder id="cardDataHolder">

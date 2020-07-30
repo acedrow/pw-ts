@@ -10,6 +10,8 @@ import React, { SyntheticEvent, useState } from 'react'
 import { getGearList } from '../../data/gear/gearList'
 import { GearCardData } from '../../gearCard/CardData'
 import { GearDrawerCategory } from './GearDrawerCategory'
+import styled from 'styled-components'
+import { KDM_PAGE_BACKGROUND } from '../../../pw/components/styling/color';
 
 export const getGearArrayFromData = () => {
   const temp = Array.from(getGearList().values())
@@ -40,13 +42,14 @@ export const GearDrawer = () => {
 
   return (
     <>
-      <Button onClick={() => toggleDrawer(!gearDrawer)}> Gear Drawer</Button>
+      <Button style= {{backgroundColor: 'white'}} onClick={() => toggleDrawer(!gearDrawer)}> Gear Drawer</Button>
       <SwipeableDrawer
         anchor={'left'}
         onClose={(e: SyntheticEvent) => toggleDrawer(false)}
         onOpen={(e: SyntheticEvent) => toggleDrawer(true)}
         open={gearDrawer}
-      >
+      > 
+      <DrawerInnerContainer>
         <List
           subheader={<ListSubheader>Gear by Settlement Location</ListSubheader>}
         >
@@ -58,7 +61,15 @@ export const GearDrawer = () => {
             />
           ))}
         </List>
+        </DrawerInnerContainer>
       </SwipeableDrawer>
     </>
   )
 }
+
+const DrawerInnerContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: ${KDM_PAGE_BACKGROUND};
+  color: white;
+`;
