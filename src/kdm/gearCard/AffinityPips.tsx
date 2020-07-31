@@ -2,8 +2,8 @@ import { Affinity, AFF_POS, AFFINITY_COLOR } from './CardData'
 import * as React from 'react'
 import styled from 'styled-components'
 
-const PIP_LENGTH_LONG = 40
-const PIP_LENGTH_SHORT = 5
+const PIP_LENGTH_LONG = 13.2 //(33 /10 ) * 4 vw
+const PIP_LENGTH_SHORT = 1.65
 
 //col-start, col-end, row-start, row-end
 const pipPositionsMap = new Map([
@@ -51,16 +51,16 @@ const AffinityPipContainer = styled.div<{
     props.position === AFF_POS.TOP ||
     props.position === AFF_POS.BOTTOM
       ? PIP_LENGTH_SHORT
-      : PIP_LENGTH_LONG}px;
+      : PIP_LENGTH_LONG}vw;
   width: ${(props) =>
     props.position === AFF_POS.RIGHT ||
     props.position === AFF_POS.LEFT
       ? PIP_LENGTH_SHORT
-      : PIP_LENGTH_LONG}px;
+      : PIP_LENGTH_LONG}vw;
   margin-left: ${(props) =>
-    props.position === AFF_POS.RIGHT ? PIP_LENGTH_SHORT : 0}px;
+    props.position === AFF_POS.RIGHT ? PIP_LENGTH_SHORT : 0}vw;
   margin-top: ${(props) =>
-    props.position === AFF_POS.BOTTOM ? PIP_LENGTH_SHORT : 0}px;
+    props.position === AFF_POS.BOTTOM ? PIP_LENGTH_SHORT : 0}vw;
   background-color: ${(props) => props.color};
   grid-column-start: ${(props) => props.gridColStart};
   grid-column-end: ${(props) => props.gridColEnd};

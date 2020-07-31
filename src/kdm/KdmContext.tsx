@@ -22,6 +22,8 @@ export const KdmContextProvider = (props: any) => {
     console.log(`gearCardToDisplay name: ${gearCardToDisplay.cardName}`)
   }, [gearCardToDisplay])
 
+  //TODO: move card interaction stuff to a separate handler class;
+
   const gearCardInteraction = (cardData: CardData, setTarget: boolean) => {
     if (setTarget) {
       setGearCardTarget({ ...cardData, isSelected: true })
@@ -37,11 +39,19 @@ export const KdmContextProvider = (props: any) => {
       clearCardContextData()
       return
     }
-    if (gearCardSource.isSelected && !gearCardTarget.isSelected) {
+    if (
+      gearCardSource.isSelected &&
+      !gearCardTarget.isSelected &&
+      !cardData.isSource
+    ) {
       gearCardInteraction(cardData, true)
       return
     }
-    if (!gearCardSource.isSelected && gearCardTarget.isSelected) {
+    if (
+      !gearCardSource.isSelected &&
+      gearCardTarget.isSelected &&
+      !cardData.isSource
+    ) {
       gearCardInteraction(cardData, false)
 
       return
@@ -50,9 +60,6 @@ export const KdmContextProvider = (props: any) => {
   }
 
   const cardLongPressHandler = (cardData: CardData) => {
-    console.log(
-      `target: ${gearCardTarget.gameData.cardName} source: ${gearCardSource.gameData.cardName} `
-    )
     if (cardData.isSelected) {
       cardData.setCardData({ ...cardData, isSelected: false })
       clearCardContextData()
@@ -60,6 +67,12 @@ export const KdmContextProvider = (props: any) => {
     }
 
     if (cardData.isSource) {
+      //deselect existing source card so multiple aren't selected at once
+      if (gearCardSource.isSelected)
+        gearCardSource.setCardData({
+          ...gearCardSource,
+          isSelected: false,
+        })
       gearCardInteraction(cardData, false)
       return
     } else {

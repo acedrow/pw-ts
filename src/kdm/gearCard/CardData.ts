@@ -95,7 +95,6 @@ export class CardData {
   gameData: GearCardData
   setCardData: (cardData: CardData) => void
   isSelected: boolean
-  setIsSelected: (selected: boolean) => void
 
   constructor(
     isSource?: boolean,
@@ -108,6 +107,5 @@ export class CardData {
       ? gameData
       : new GearCardData('', ARMOR_LOC.NONE, [], [], [])
     this.setCardData = setCardData ? setCardData : () => {console.error('undefined setCardData')}
-    this.isSelected = isSelected ? isSelected : false
   }
 }

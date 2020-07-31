@@ -23,5 +23,6 @@ export const KdmTracker = () => {
 }
 
 const TestContentContainer = styled.div`
+  font-family: 'Roboto';
   height: 1200px;
 `

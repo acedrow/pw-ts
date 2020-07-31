@@ -1,17 +1,16 @@
 import {
   Button,
   List,
-  ListItem,
-  ListItemText,
-  SwipeableDrawer,
-  ListSubheader,
+
+
+  SwipeableDrawer
 } from '@material-ui/core'
 import React, { SyntheticEvent, useState } from 'react'
+import styled from 'styled-components'
+import { KDM_PAGE_BACKGROUND } from '../../../pw/components/styling/color'
 import { getGearList } from '../../data/gear/gearList'
 import { GearCardData } from '../../gearCard/CardData'
 import { GearDrawerCategory } from './GearDrawerCategory'
-import styled from 'styled-components'
-import { KDM_PAGE_BACKGROUND } from '../../../pw/components/styling/color';
 
 export const getGearArrayFromData = () => {
   const temp = Array.from(getGearList().values())
@@ -51,7 +50,7 @@ export const GearDrawer = () => {
       > 
       <DrawerInnerContainer>
         <List
-          subheader={<ListSubheader>Gear by Settlement Location</ListSubheader>}
+          subheader={<GearDrawerSubheader>Gear by Settlement Location</GearDrawerSubheader>}
         >
           {gearArray.map((settLoc, index) => (
             <GearDrawerCategory
@@ -66,6 +65,12 @@ export const GearDrawer = () => {
     </>
   )
 }
+
+const GearDrawerSubheader = styled.div`
+  width: 100%;
+  text-align: center;
+  color: white;
+`;
 
 const DrawerInnerContainer = styled.div`
   width: 100%;
