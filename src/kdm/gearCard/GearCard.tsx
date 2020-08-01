@@ -17,18 +17,44 @@ export enum GEAR_CARD_DISPLAY_TYPE {
   TEXT = 'text',
 }
 
+//in vw units
+/* TODO: convert these to pixel values, compute  elsewhere and pass them in, will allow us to avoid having media checks in this class to worry about screensize. */
+const SMALL_CARD_LENGTH_PROPORTION_MOBILE = 3 //33%
+const LARGE_CARD_LENGTH_PROPORTION_MOBILE = 2 //50%
+
 export const GearCard = (props: {
   cardData: CardData
   display?: GEAR_CARD_DISPLAY_TYPE
   clickable?: boolean
 }) => {
-  const { cardLongPressHandler, cardShortPressHandler } = useContext(KdmContext)
+  const { cardLongPressHandler, cardShortPressHandler, viewWidth } = useContext(
+    KdmContext
+  )
   const [cardData, setCardData] = useState<CardData>(new CardData())
+  const clickable = props.clickable ? props.clickable : true
   const display = props.display
     ? props.display
     : GEAR_CARD_DISPLAY_TYPE.SMALL_CARD
-  const clickable = props.clickable !== undefined ? props.clickable : true
-  console.log(`card ${cardData.gameData.cardName} clickable: ${clickable}`)
+
+  const displayProportion =
+    display === GEAR_CARD_DISPLAY_TYPE.LARGE_CARD
+      ? LARGE_CARD_LENGTH_PROPORTION_MOBILE
+      : SMALL_CARD_LENGTH_PROPORTION_MOBILE
+
+  useEffect(() => {
+    setCardLength(getCardLength())
+  }, [viewWidth])
+
+  const getCardLength = () => {
+    console.log(
+      `getCardLength ${viewWidth} / ${displayProportion} = ${
+        viewWidth / displayProportion
+      }`
+    )
+    return viewWidth / displayProportion
+  }
+
+  const [cardLength, setCardLength] = useState(getCardLength())
 
   const getBorderStyle = () => {
     if (cardData.isSelected) return '2px solid red'
@@ -70,9 +96,7 @@ export const GearCard = (props: {
         <CardViewContainer
           {...longPressEvent}
           borderVal={getBorderStyle()}
-          displayLarge={
-            display === GEAR_CARD_DISPLAY_TYPE.LARGE_CARD ? true : false
-          }
+          cardLength={cardLength}
         >
           <CardDataHolder id="cardDataHolder">
             <CardTitle>{cardData.gameData.cardName}</CardTitle>
@@ -91,6 +115,7 @@ export const GearCard = (props: {
             )}
           </CardDataHolder>
           <AffinityPips
+            cardLength={cardLength}
             affinities={cardData.gameData.affinities}
           ></AffinityPips>
         </CardViewContainer>
@@ -105,12 +130,9 @@ export const GearCard = (props: {
   )
 }
 
-const SMALL_CARD_LENGTH = '33vw'
-const LARGE_CARD_LENGTH = '50vw'
-
 const CardViewContainer = styled.div<{
   borderVal: string
-  displayLarge: boolean
+  cardLength: number
 }>`
   ::selection {
     background: gray;
@@ -120,10 +142,8 @@ const CardViewContainer = styled.div<{
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   background-color: ${CARD_BACKGROUND};
   border: ${(props) => props.borderVal};
-  height: ${(props) =>
-    props.displayLarge ? LARGE_CARD_LENGTH : SMALL_CARD_LENGTH};
-  width: ${(props) =>
-    props.displayLarge ? LARGE_CARD_LENGTH : SMALL_CARD_LENGTH};
+  height: ${(props) => props.cardLength}px;
+  width: ${(props) => props.cardLength}px;
 `
 
 const TextViewContainer = styled.div<{ borderVal: string }>`

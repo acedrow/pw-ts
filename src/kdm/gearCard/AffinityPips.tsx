@@ -2,9 +2,6 @@ import { Affinity, AFF_POS, AFFINITY_COLOR } from './CardData'
 import * as React from 'react'
 import styled from 'styled-components'
 
-const PIP_LENGTH_LONG = 13.2 //(33 /10 ) * 4 vw
-const PIP_LENGTH_SHORT = 1.65
-
 //col-start, col-end, row-start, row-end
 const pipPositionsMap = new Map([
   [AFF_POS.TOP, [4, 7, 0, 0]],
@@ -19,14 +16,23 @@ const getPipPosition = (pos: AFF_POS) => {
   return toReturn ? toReturn : [0,0,0,0]
 }
 
-//TODO: replace with a hash map
-export const AffinityPips = (props: { affinities: Affinity[] }) => {
+const getPipDimensions = (cardLength : number) => {
+  return {
+    longSide: (cardLength / 10) * 4,
+    shortSide: (cardLength / 20)
+  }
+}
+
+export const AffinityPips = (props: { affinities: Affinity[], cardLength: number }) => {
+  const pipDimensions = getPipDimensions(props.cardLength);
+  
   return (
     <>
       {props.affinities.map((affinity, index) => (
         <AffinityPipContainer
           id={`affinity${index}`}
           position={affinity.position}
+          pipDimensions={pipDimensions}
           gridColStart={getPipPosition(affinity.position)[0]}
           gridColEnd={getPipPosition(affinity.position)[1]}
           gridRowStart={getPipPosition(affinity.position)[2]}
@@ -41,6 +47,7 @@ export const AffinityPips = (props: { affinities: Affinity[] }) => {
 
 const AffinityPipContainer = styled.div<{
   position: AFF_POS
+  pipDimensions: {longSide: number, shortSide: number}
   gridColStart: number
   gridColEnd: number
   gridRowStart: number
@@ -50,17 +57,17 @@ const AffinityPipContainer = styled.div<{
   height: ${(props) =>
     props.position === AFF_POS.TOP ||
     props.position === AFF_POS.BOTTOM
-      ? PIP_LENGTH_SHORT
-      : PIP_LENGTH_LONG}vw;
+      ? props.pipDimensions.shortSide
+      : props.pipDimensions.longSide}px;
   width: ${(props) =>
     props.position === AFF_POS.RIGHT ||
     props.position === AFF_POS.LEFT
-      ? PIP_LENGTH_SHORT
-      : PIP_LENGTH_LONG}vw;
+      ? props.pipDimensions.shortSide
+      : props.pipDimensions.longSide}px;
   margin-left: ${(props) =>
-    props.position === AFF_POS.RIGHT ? PIP_LENGTH_SHORT : 0}vw;
+    props.position === AFF_POS.RIGHT ? props.pipDimensions.shortSide : 0}px;
   margin-top: ${(props) =>
-    props.position === AFF_POS.BOTTOM ? PIP_LENGTH_SHORT : 0}vw;
+    props.position === AFF_POS.BOTTOM ? props.pipDimensions.shortSide : 0}px;
   background-color: ${(props) => props.color};
   grid-column-start: ${(props) => props.gridColStart};
   grid-column-end: ${(props) => props.gridColEnd};

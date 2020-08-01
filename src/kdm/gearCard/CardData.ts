@@ -47,6 +47,12 @@ export class CraftingCost {
   }
 }
 
+/* 
+Gear emojis:
+armor: 👒 ✋ 🦵 🥋 waist will use belt clip art
+weapons: 🗡️ 🔪 🛡️ 🏹
+*/
+
 export class GearCardData {
   cardName: string
   armorLocation: ARMOR_LOC

@@ -1,11 +1,13 @@
 import * as React from 'react'
-import { CardData, GearCardData, ARMOR_LOC } from './gearCard/CardData'
-import { useState, useEffect, SyntheticEvent } from 'react'
+import { useEffect, useState } from 'react'
+import { ARMOR_LOC, CardData, GearCardData } from './gearCard/CardData'
 
 interface KdmContext {
-  cardLongPressHandler: (cardData: CardData) => void
-  cardShortPressHandler: (cardData: CardData) => void
-  gearCardToDisplay: GearCardData
+  viewWidth: number;
+  setViewWidth: (width: number) => void;
+  cardLongPressHandler: (cardData: CardData) => void;
+  cardShortPressHandler: (cardData: CardData) => void;
+  gearCardToDisplay: GearCardData;
 }
 
 const context = {} as KdmContext
@@ -17,6 +19,7 @@ export const KdmContextProvider = (props: any) => {
   const [gearCardToDisplay, setCardToDisplay] = useState<GearCardData>(
     new GearCardData('', ARMOR_LOC.NONE, [], [], [])
   )
+  const [viewWidth, setViewWidth] = useState(window.innerWidth)
 
   useEffect(() => {
     console.log(`gearCardToDisplay name: ${gearCardToDisplay.cardName}`)
@@ -123,6 +126,8 @@ export const KdmContextProvider = (props: any) => {
   return (
     <KdmContext.Provider
       value={{
+        viewWidth,
+        setViewWidth,
         cardLongPressHandler: cardLongPressHandler,
         cardShortPressHandler: cardShortPressHandler,
         gearCardToDisplay,

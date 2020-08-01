@@ -32,12 +32,12 @@ export const Background = (props: BgiProps) => {
 
 const BackgroundImageDiv = styled.div<{ imageUrl: string; bgColor: string }>`
   width: 100%;
-  height: 100%;
   max-width: 100%;
+  height: 100vh;
+  ${props => !props.imageUrl && props.bgColor && `position: fixed; overflow: auto;`}
   background-image: ${(props) =>
     props.imageUrl ? 'url(' + props.imageUrl + ')' : ''};
   background-size: cover;
   background-color: ${(props) => (props.bgColor ? props.bgColor : '')};
   background-position: bottom;
-  /* TODO: min-height? */
 `

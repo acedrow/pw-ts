@@ -30,8 +30,13 @@ class App extends Component {
 
 //TODO: need to make this centered when fullscreen
 const MainContentContainer = styled.div`
+
+  display: block;
+  overflow: auto;
   height: 100%;
-  max-width: 1200px;
+  min-height: 100%;
+  width: 100%;
+  text-align: center;
 `
 
 export default App
