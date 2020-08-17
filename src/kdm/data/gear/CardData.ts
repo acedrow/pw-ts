@@ -1,5 +1,5 @@
-import { PIP_RED, PIP_GREEN, PIP_BLUE } from '../../pw/components/styling/color'
-import { CRAFT_MAT } from '../data/gear/craftingMaterials'
+import { PIP_RED, PIP_GREEN, PIP_BLUE } from '../../../pw/components/styling/color'
+import { CRAFT_MAT } from './craftingMaterials'
 export enum ARMOR_LOC {
   ARMS = 'arms',
   LEGS = 'legs',

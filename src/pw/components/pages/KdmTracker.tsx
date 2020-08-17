@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { BottomNav } from '../../../kdm/components/BottomNav'
 import { GearDrawer } from '../../../kdm/components/gearDrawer/GearDrawer'
 import { KdmContextProvider } from '../../../kdm/KdmContext'
-import { SurvivorSheet } from '../../../kdm/pages/SurvivorSheet'
+import { SurvivorsPage } from '../../../kdm/pages/SurvivorsPage'
 import { KDM_PAGE_BACKGROUND } from '../styling/color'
 import { Background } from './Background'
 import { ViewWidthTracker } from '../../../util/ViewWidthTracker'
@@ -20,7 +20,7 @@ export const KdmTracker = () => {
         <KdmContextProvider>
           <ViewWidthTracker/>
           <GearDrawer></GearDrawer>
-          <SurvivorSheet />
+          <SurvivorsPage />
           <BottomNav />
         </KdmContextProvider>
       </InnerPageContainer>

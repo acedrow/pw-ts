@@ -1,4 +1,4 @@
-import { GearCardData, CardData, AFFINITY_COLOR } from './CardData'
+import { GearCardData, CardData, AFFINITY_COLOR } from '../data/gear/CardData'
 import { useState, useContext, useEffect, SyntheticEvent } from 'react'
 import * as React from 'react'
 import styled from 'styled-components'
@@ -141,6 +141,7 @@ const CardViewContainer = styled.div<{
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   background-color: ${CARD_BACKGROUND};
+  color: ${KDM_PAGE_BACKGROUND};
   border: ${(props) => props.borderVal};
   height: ${(props) => props.cardLength}px;
   width: ${(props) => props.cardLength}px;

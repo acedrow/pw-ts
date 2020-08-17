@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { ARMOR_LOC, CardData, GearCardData } from './gearCard/CardData'
+import { ARMOR_LOC, CardData, GearCardData } from './data/gear/CardData'
 
 interface KdmContext {
   viewWidth: number;

@@ -1,4 +1,4 @@
-import { GearCardData, ARMOR_LOC } from '../../gearCard/CardData'
+import { GearCardData, ARMOR_LOC } from './CardData'
 import { SKINNERY_GEAR_DATA } from './skinnery'
 import { CATARIUM_GEAR_DATA } from './catarium';
 

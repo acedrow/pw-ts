@@ -9,7 +9,7 @@ import React, { SyntheticEvent, useState } from 'react'
 import styled from 'styled-components'
 import { KDM_PAGE_BACKGROUND } from '../../../pw/components/styling/color'
 import { getGearList } from '../../data/gear/gearList'
-import { GearCardData } from '../../gearCard/CardData'
+import { GearCardData } from '../../data/gear/CardData'
 import { GearDrawerCategory } from './GearDrawerCategory'
 
 export const getGearArrayFromData = () => {
@@ -41,7 +41,7 @@ export const GearDrawer = () => {
 
   return (
     <>
-      <Button style= {{backgroundColor: 'white'}} onClick={() => toggleDrawer(!gearDrawer)}> Gear Drawer</Button>
+      {/* <Button style= {{backgroundColor: 'white'}} onClick={() => toggleDrawer(!gearDrawer)}> Gear Drawer</Button> */}
       <SwipeableDrawer
         anchor={'left'}
         onClose={(e: SyntheticEvent) => toggleDrawer(false)}

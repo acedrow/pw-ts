@@ -4,7 +4,7 @@ import {
   AFF_POS,
   AFFINITY_COLOR,
   CraftingCost,
-} from '../../gearCard/CardData'
+} from './CardData'
 import { CRAFT_MAT } from './craftingMaterials'
 
 export const CATARIUM_GEAR_DATA = new Map<string, GearCardData>([

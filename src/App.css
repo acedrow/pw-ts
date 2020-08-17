@@ -21,6 +21,7 @@ html {
   width: 100%;
 }
 
+
 .App {
   font-family: 'Yeseva One', cursive;
   height: 100%;
@@ -40,6 +41,12 @@ body {
 h1 {
   font-weight: normal;
   color: #d1a9c7;
+}
+
+
+.KdmTracker {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  color: white;
 }
 
 .MuiPaper-root{

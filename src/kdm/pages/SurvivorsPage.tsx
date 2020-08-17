@@ -7,11 +7,14 @@ import {
   AFF_POS,
   AFFINITY_COLOR,
   CraftingCost,
-} from '../gearCard/CardData'
+} from '../data/gear/CardData'
 import { getGearCard } from '../data/gear/gearList'
 import { CRAFT_MAT } from '../data/gear/craftingMaterials'
+import { SurvivorData } from '../data/survivor/SurvivorData';
+import MainSurvivorStats from '../components/survivorSheet/mainStats/MainSurvivorStats'
+import styled from 'styled-components'
 
-export const SurvivorSheet = () => {
+export const SurvivorsPage = () => {
   const TEST_GEAR_DATA = new GearCardData(
     'Arse of Destruction',
     ARMOR_LOC.NONE,
@@ -30,8 +33,11 @@ export const SurvivorSheet = () => {
     [new CraftingCost(CRAFT_MAT.BONE, 1), new CraftingCost(CRAFT_MAT.SINEW, 1)]
   )
 
+  const TEST_SURVIVOR_DATA = new SurvivorData('Jefferson Davis', false, 5, 2)
+
   return (
-    <>
+    <OuterDiv className='KdmTracker'>
+      <MainSurvivorStats survivorData={TEST_SURVIVOR_DATA} /> 
       <GearCard
         display={GEAR_CARD_DISPLAY_TYPE.LARGE_CARD}
         clickable={false}
@@ -52,6 +58,10 @@ export const SurvivorSheet = () => {
           )
         }
       ></GearCard>
-    </>
+    </OuterDiv>
   )
 }
+
+const OuterDiv = styled.div`
+  
+`;
