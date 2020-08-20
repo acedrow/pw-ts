@@ -38,9 +38,15 @@ body {
   margin: 0 0 0 0; 
 }
 
+/*
+this was breaking the KDM app - TODO: refactor to class
 h1 {
   font-weight: normal;
   color: #d1a9c7;
+} */
+
+button {
+  border: none;
 }
 
 

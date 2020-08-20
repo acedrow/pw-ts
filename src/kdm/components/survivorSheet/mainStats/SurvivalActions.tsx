@@ -82,9 +82,11 @@ export default function (props: {
   )
 }
 
-const OuterDiv = styled.div``
+const OuterDiv = styled.div`
+`
 
 const ActionButton = styled.button`
   background-color: transparent;
   color: white;
+  font-size: 20px;
 `
