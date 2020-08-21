@@ -83,10 +83,12 @@ export default function (props: {
 }
 
 const OuterDiv = styled.div`
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 `
 
 const ActionButton = styled.button`
+  outline: none;
   background-color: transparent;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
 `

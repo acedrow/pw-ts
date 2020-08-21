@@ -49,7 +49,8 @@ export class CraftingCost {
 
 /* 
 Gear emojis:
-armor: 👒 ✋ 🦵 🥋 waist will use belt clip art
+armor:  👒 ✋ 🦵 🥋 waist will use belt clip art
+brain: 🧠
 weapons: 🗡️ 🔪 🛡️ 🏹
 */
 

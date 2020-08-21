@@ -10,6 +10,7 @@ interface SectionProps {
   bottomBorder: boolean
   title?: string
   titleH1?: boolean
+  collapsible?: boolean
 }
 
 export const StatsSectionContainer: FunctionComponent<SectionProps> = (
@@ -17,7 +18,7 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
 ) => {
   const h1Symbols = ['⛧', '⌾']
   const [h1SymbolIndex, setH1SymbolIndex] = useState(0)
-  const [collapsed, setCollapsed] = useState(true)
+  const [collapsed, setCollapsed] = useState(false)
 
   const getNewH1Symbol = () => {
     if (h1SymbolIndex >= h1Symbols.length - 1) {
@@ -34,7 +35,11 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
       collapsed={collapsed}
     >
       {props.title && (
-        <HeaderDiv>
+        <HeaderDiv
+          onClick={
+            props.collapsible ? () => setCollapsed(!collapsed) : undefined
+          }
+        >
           {props.titleH1 && (
             <>
               <TitleH1> {props.title}</TitleH1>{' '}
@@ -46,10 +51,7 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
           {!props.titleH1 && (
             <Header collapsed={collapsed}>
               <TitleH2> {props.title}</TitleH2>
-              <HeaderButton
-                fontSize={'18px'}
-                onClick={() => setCollapsed(!collapsed)}
-              >
+              <HeaderButton fontSize={'18px'}>
                 {collapsed ? '+' : '-'}
               </HeaderButton>
             </Header>
@@ -61,7 +63,7 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
   )
 }
 
-const HeaderButton = styled.button<{ fontSize: string }>`
+const HeaderButton = styled.div<{ fontSize: string }>`
   outline: none;
   position: absolute;
   right: 0;
@@ -73,17 +75,18 @@ const HeaderButton = styled.button<{ fontSize: string }>`
 `
 
 const Header = styled.div<{ collapsed: boolean }>`
+  margin: 0 0 5px 0;
   width: 100%;
   position: relative;
   
   /* background: rgb(0,0,0);
   background: ${(props) =>
-  props.collapsed
-    ? KDM_DARK_GREY
-    : 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(15,15,15,1) 25%, rgba(26,26,26,1) 51%, rgba(49,49,49,1) 100%)'}; */
+    props.collapsed
+      ? KDM_DARK_GREY
+      : 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(15,15,15,1) 25%, rgba(26,26,26,1) 51%, rgba(49,49,49,1) 100%)'}; */
 
    background-color: ${(props) =>
-    props.collapsed ? KDM_DARK_GREY : KDM_PAGE_BACKGROUND}; 
+     props.collapsed ? KDM_DARK_GREY : KDM_PAGE_BACKGROUND}; 
   transition: background-color 1s;
 `
 

@@ -10,7 +10,7 @@ import {
 } from '../data/gear/CardData'
 import { getGearCard } from '../data/gear/gearList'
 import { CRAFT_MAT } from '../data/gear/craftingMaterials'
-import { SurvivorData } from '../data/survivor/SurvivorData';
+import { SurvivorData } from '../data/survivor/SurvivorData'
 import MainSurvivorStats from '../components/survivorSheet/mainStats/MainSurvivorStats'
 import styled from 'styled-components'
 
@@ -33,18 +33,17 @@ export const SurvivorsPage = () => {
     [new CraftingCost(CRAFT_MAT.BONE, 1), new CraftingCost(CRAFT_MAT.SINEW, 1)]
   )
 
-  const TEST_SURVIVOR_DATA = new SurvivorData('Jefferson Davis', false, 5, 2)
+  const TEST_SURVIVOR_DATA = new SurvivorData('Jefferson Davis', false, 5, 2, undefined, undefined)
 
   return (
-    <OuterDiv className='KdmTracker'>
-      <MainSurvivorStats survivorData={TEST_SURVIVOR_DATA} /> 
+    <OuterDiv className="KdmTracker">
+      <MainSurvivorStats survivorData={TEST_SURVIVOR_DATA} />
       <GearCard
         display={GEAR_CARD_DISPLAY_TYPE.LARGE_CARD}
         clickable={false}
         cardData={
           //new CardData(false, getGearCard('skinnery', 'bandages'), undefined)
           new CardData(false, TEST_GEAR_DATA, undefined)
-
         }
       ></GearCard>
       <GearCard
@@ -53,8 +52,7 @@ export const SurvivorsPage = () => {
             false,
             //getGearCard('skinnery', 'rawhide headband'),
             TEST_GEAR_DATA,
-            undefined,
-            false
+            undefined
           )
         }
       ></GearCard>
@@ -62,6 +60,4 @@ export const SurvivorsPage = () => {
   )
 }
 
-const OuterDiv = styled.div`
-  
-`;
+const OuterDiv = styled.div``

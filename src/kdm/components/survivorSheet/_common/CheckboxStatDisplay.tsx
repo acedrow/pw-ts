@@ -1,54 +1,62 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import {
-  BLOOD_RED,
-  KDM_DARK_GREY,
-} from '../../../../pw/components/styling/color'
 import _ from 'lodash'
-
+import React, { useEffect, useState } from 'react'
+import shortid from 'shortid'
+import styled from 'styled-components'
+import { CounterButton } from './CommonStyled'
+import CheckBox from './CheckBox'
 
 interface CheckboxProps {
-  value: number;
-  maxValue: number;
+  value: number
+  maxValue: number
   descFooter?: JSX.Element
   checkHighlights?: number[]
 }
 
 export default (props: CheckboxProps) => {
-  const [value, setValue] = useState(props.value -1 < 0 ? -1 : props.value - 1 )
+  const checkInitValue = (val: number, maxVal: number) => {
+    console.log(`initial value`)
+    if (val < -1 || val > maxVal) {
+      return -1
+    }
+    return val - 1
+  }
+
+  const [value, setValue] = useState(
+    checkInitValue(props.value, props.maxValue)
+  )
+
   const [checkBoxArray, setCheckBoxArray] = useState<boolean[]>([])
 
   useEffect(() => {
+    console.log(`value: ${value}`)
+    if (value <= 0) {
+      setValue(0)
+    }
     let checkboxes: boolean[] = []
     _.times(props.maxValue, (i) => {
-      checkboxes.push(i > value ? false : true)
+      checkboxes.push(i > value - 1 ? false : true)
     })
     setCheckBoxArray([...checkboxes])
   }, [value])
 
   return (
     <OuterDiv>
-      <TrackerDiv>
-        {/* <LabelDiv>Hunt XP:</LabelDiv> */}
-        <CheckboxDiv>
-          {checkBoxArray.map((checked, index) => {
-            let highlight = false
-            if (props.checkHighlights?.includes(index)) highlight = true
-            return (
-              <>
-                &nbsp;
-                <Checkbox highlight={highlight} key={index}>
-                  {checked ? `☑` : `☐`}
-                </Checkbox>
-              </>
-            )
-          })}
-        </CheckboxDiv>
-        <ControlsDiv>
-          <CounterButton onClick={() => setValue(value + 1)}>+</CounterButton>
-          <CounterButton onClick={() => setValue(value - 1)}>-</CounterButton>
-        </ControlsDiv>
-      </TrackerDiv>
+      {/* <LabelDiv>Hunt XP:</LabelDiv> */}
+      <CheckboxDiv>
+        <CounterButton onClick={() => setValue(value - 1)}>-</CounterButton>
+
+        {checkBoxArray.map((checked, index) => {
+          let highlight = false
+          if (props.checkHighlights?.includes(index)) highlight = true
+          return (
+            <>
+              <CheckBox highlight={highlight} key={shortid()} checked={value > index} />
+            </>
+          )
+        })}
+
+        <CounterButton onClick={() => setValue(value + 1)}>+</CounterButton>
+      </CheckboxDiv>
       {props.descFooter && <DescFooter>{props.descFooter}</DescFooter>}
     </OuterDiv>
   )
@@ -57,44 +65,20 @@ export default (props: CheckboxProps) => {
 const OuterDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `
 
 const DescFooter = styled.div`
   font-size: 16px;
 `
 
-const TrackerDiv = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-`
-
-
 const CheckboxDiv = styled.div`
-  font-size: 5vw;
+  font-size: 4vw;
   @media (min-width: 600px) {
     font-size: 30px;
   }
-  margin-left: 5px;
   display: flex;
   flex-direction: row;
 `
-const Checkbox = styled.span<{ highlight?: boolean }>`
-  color: ${(props) => (props.highlight ? BLOOD_RED : 'white')};
-  font-weight: ${(props) => (props.highlight ? 'bold' : 'normal')};
-`
-const ControlsDiv = styled.div``
+const HideTooltipButton = styled.div``
 
-const CounterButton = styled.button`
-  align-self: flex-end;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  border-radius: 50%;
-  color: white;
-  background-color: ${KDM_DARK_GREY};
-  border: 1px solid white;
-  min-height: 20px;
-  min-width: 20px;
-`
