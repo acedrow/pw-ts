@@ -1,3 +1,4 @@
+import { BLANK_DEFENSE_STATS } from "../../components/survivorSheet/mainStats/Defenses"
 
 export interface SurvivalActions {
   dodge: boolean
@@ -7,24 +8,20 @@ export interface SurvivalActions {
   endure: boolean
 }
 
+export const enum DEFENSE_NAME {
+  BRAIN = 'brain',
+  HEAD = 'head',
+  ARMS = 'arms',
+  LEGS = 'legs',
+  BODY = 'body',
+  WAIST = 'waist',
+}
+
 export interface DefenseType {
-  name: 'brain' | 'head' | 'arms' | 'legs' | 'body' | 'waist';
+  name: DEFENSE_NAME;
   value: number;
   checkBoxes: boolean[];
 }
-
-
-const BLANK_DEFENSE_STATS: DefenseType[] = [
-    { name: 'brain', value: 0, checkBoxes: [false] },
-    { name: 'head', value: 0, checkBoxes: [false] },
-    { name: 'arms', value: 0, checkBoxes: [false, false] },
-    { name: 'legs', value: 0, checkBoxes:  [false, false] },
-    { name: 'body', value: 0, checkBoxes:  [false, false] },
-    { name: 'waist', value: 0, checkBoxes:  [false, false] },
-  ]
-
-
-
 
 export class SurvivorData {
   name: string

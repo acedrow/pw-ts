@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { GearCardData, CardData } from '../../data/gear/CardData'
 import { Collapse } from '@material-ui/core'
 import { GearCard, GEAR_CARD_DISPLAY_TYPE } from '../../gearCard/GearCard'
+import shortid from 'shortid'
 
 interface DrawerCatProps {
   label: string
@@ -20,7 +21,7 @@ export const GearDrawerCategory = (props: DrawerCatProps) => {
       <Collapse in={showContents}>
         <List>
           {props.gearArray.map((gear, index) => (
-            <ListItem key={index}>
+            <ListItem key={shortid()}>
               {/* TODO: actual implementation of gear card objects here */}
               {/* <ListItemText primary={<>&nbsp;&nbsp;{gear.cardName}</>} /> */}
               <GearCard

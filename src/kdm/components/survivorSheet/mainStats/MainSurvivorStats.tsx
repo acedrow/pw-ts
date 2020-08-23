@@ -5,6 +5,7 @@ import { SurvivorData } from '../../../data/survivor/SurvivorData'
 import HuntXp from './HuntXp'
 import { StatsSectionContainer } from './StatsSectionContainer'
 import SurvivalActions from './SurvivalActions'
+import Defenses from './Defenses'
 
 export default function (props: { survivorData: SurvivorData }) {
   return (
@@ -33,7 +34,11 @@ export default function (props: { survivorData: SurvivorData }) {
           survivalActions={props.survivorData.actions || undefined}
         ></SurvivalActions>
       </StatsSectionContainer>
+
+      <Defenses />
+
     </OuterContainer>
+
   )
 }
 

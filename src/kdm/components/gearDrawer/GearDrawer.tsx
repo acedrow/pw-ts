@@ -11,6 +11,7 @@ import { KDM_PAGE_BACKGROUND } from '../../../pw/components/styling/color'
 import { getGearList } from '../../data/gear/gearList'
 import { GearCardData } from '../../data/gear/CardData'
 import { GearDrawerCategory } from './GearDrawerCategory'
+import shortid from 'shortid'
 
 export const getGearArrayFromData = () => {
   const temp = Array.from(getGearList().values())
@@ -54,7 +55,7 @@ export const GearDrawer = () => {
         >
           {gearArray.map((settLoc, index) => (
             <GearDrawerCategory
-              key = {index}
+              key = {shortid()}
               label={firstLetterUppercase(Array.from(GEAR_LIST.keys())[index])}
               gearArray={settLoc}
             />

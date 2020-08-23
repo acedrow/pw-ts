@@ -1,8 +1,7 @@
-import _ from 'lodash'
-import React, { useEffect, useState } from 'react'
-import shortid from 'shortid'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { CounterButton } from './CommonStyled'
+import _ from 'lodash'
 import CheckBox from './CheckBox'
 
 interface CheckboxProps {
@@ -10,6 +9,8 @@ interface CheckboxProps {
   maxValue: number
   descFooter?: JSX.Element
   checkHighlights?: number[]
+  valueButtons?: boolean
+  checkboxMargins?: boolean
 }
 
 export default (props: CheckboxProps) => {
@@ -21,41 +22,62 @@ export default (props: CheckboxProps) => {
     return val - 1
   }
 
+  const getCheckboxArray = (value: number, maxValue: number) => {
+    let checked: boolean[] = []
+    _.times(maxValue, (i) => {
+      checked.push(i < value ? true : false)
+    })
+    return checked
+  }
+
   const [value, setValue] = useState(
     checkInitValue(props.value, props.maxValue)
   )
-
-  const [checkBoxArray, setCheckBoxArray] = useState<boolean[]>([])
+  const [checkboxArray, setCheckboxArray] = useState<boolean[]>(
+    getCheckboxArray(props.value, props.maxValue)
+  )
 
   useEffect(() => {
-    console.log(`value: ${value}`)
-    if (value <= 0) {
-      setValue(0)
+    setCheckboxArray(getCheckboxArray(value, props.maxValue))
+  }, [value, setCheckboxArray])
+
+  const handleCheckboxClick = (index: number) => {
+    //The checkbox display will jump to whichever checkbox is clicked
+    // if (index < value) {
+    //   setValue(index)
+    // } else {
+    //   setValue(index+1)
+
+    //this functions more like a counter, tapping right of the last filled box increases value, tapping on it or left of it decreases value
+    if (index < value) {
+      setValue(value-1)
+    } else {
+      setValue(value+1)
     }
-    let checkboxes: boolean[] = []
-    _.times(props.maxValue, (i) => {
-      checkboxes.push(i > value - 1 ? false : true)
-    })
-    setCheckBoxArray([...checkboxes])
-  }, [value])
+  }
 
   return (
     <OuterDiv>
-      {/* <LabelDiv>Hunt XP:</LabelDiv> */}
       <CheckboxDiv>
-        <CounterButton onClick={() => setValue(value - 1)}>-</CounterButton>
+        {props.valueButtons && (
+          <CounterButton onClick={() => setValue(value - 1)}>-</CounterButton>
+        )}
 
-        {checkBoxArray.map((checked, index) => {
-          let highlight = false
-          if (props.checkHighlights?.includes(index)) highlight = true
-          return (
-            <>
-              <CheckBox highlight={highlight} key={shortid()} checked={value > index} />
-            </>
-          )
-        })}
+        {checkboxArray.map((checked, index) => (
+          <CheckBox
+            index={index}
+            onClickCallback={
+              props.valueButtons ? undefined : handleCheckboxClick
+            }
+            checked={checked}
+            highlight={props.checkHighlights?.includes(index + 1)}
+            {...props}
+          />
+        ))}
 
-        <CounterButton onClick={() => setValue(value + 1)}>+</CounterButton>
+        {props.valueButtons && (
+          <CounterButton onClick={() => setValue(value + 1)}>+</CounterButton>
+        )}
       </CheckboxDiv>
       {props.descFooter && <DescFooter>{props.descFooter}</DescFooter>}
     </OuterDiv>
@@ -73,12 +95,15 @@ const DescFooter = styled.div`
 `
 
 const CheckboxDiv = styled.div`
+  margin: 5px 0;
   font-size: 4vw;
+  /* TODO: standardize these screen size breakpoints across the tracker app */
   @media (min-width: 600px) {
     font-size: 30px;
   }
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `
+/* TODO: implement this */
 const HideTooltipButton = styled.div``
-

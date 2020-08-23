@@ -8,7 +8,6 @@ interface CounterButtonProps {
   
 }
 
-//TODO: break out into own component and include a prop for + or -
 export const CounterButton = styled.button<CounterButtonProps >`
   height: ${props => props.height || '5vw'};
   width: ${props => props.width || '5vw'};;

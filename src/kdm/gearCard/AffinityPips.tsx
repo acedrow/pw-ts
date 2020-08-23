@@ -1,6 +1,7 @@
 import { Affinity, AFF_POS, AFFINITY_COLOR } from '../data/gear/CardData'
 import * as React from 'react'
 import styled from 'styled-components'
+import shortid from 'shortid'
 
 //col-start, col-end, row-start, row-end
 const pipPositionsMap = new Map([
@@ -38,7 +39,7 @@ export const AffinityPips = (props: { affinities: Affinity[], cardLength: number
           gridRowStart={getPipPosition(affinity.position)[2]}
           gridRowEnd={getPipPosition(affinity.position)[3]}
           color={affinity.color}
-          key={index}
+          key={shortid()}
         ></AffinityPipContainer>
       ))}
     </>
