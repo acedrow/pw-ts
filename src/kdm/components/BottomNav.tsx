@@ -1,40 +1,44 @@
-import styled from 'styled-components'
-import * as React from 'react'
-import { Link } from 'react-router-dom'
-import { LIGHT_GREY } from '../../pw/components/styling/color'
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { KDM_DARK_GREY } from '../../pw/components/styling/color';
 
 export const BottomNav = () => {
   return (
     <BottomNavContainer>
       <BottomNavLink to="/kdm-test" gridcol={1}>
-        Settlement
+        🏘️
       </BottomNavLink>
       <BottomNavLink to="/kdm-test" gridcol={2}>
-        Survivors
+        👪
       </BottomNavLink>
       <BottomNavLink to="/kdm-test" gridcol={3}>
-        Settings
+        ⚙️
       </BottomNavLink>
       <BottomNavLink to="/kdm-test" gridcol={4}>
-        Search
+        🔍
+      </BottomNavLink>
+      <BottomNavLink to="/kdm-test" gridcol={4}>
+        🗃️
       </BottomNavLink>
     </BottomNavContainer>
   )
 }
 
 const BottomNavLink = styled(Link)<{ gridcol: number }>`
-  background-color: ${LIGHT_GREY};
-  border: 1px solid white;
+  padding: 5px;
+  background-color: ${KDM_DARK_GREY};
+  border: 1px solid gray;
   grid-column-start: ${(props) => props.gridcol};
   grid-column-end: ${(props) => props.gridcol};
+  text-decoration: none;
+  width: 20%;
 `
 
 const BottomNavContainer = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 50px;
-  display: grid;
-  /* 4 buttons on the lower nav - settlement, survivors, settings, search*/
-  grid-template-columns: 25% 25% 25% 25%;
+  display: flex;
+  flex-direction: row;
 `

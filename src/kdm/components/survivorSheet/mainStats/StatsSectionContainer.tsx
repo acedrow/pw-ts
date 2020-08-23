@@ -29,10 +29,11 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
   return (
     // TODO: swiping along the name should switch survivors
 
-    <Content
+    <OuterContainer
       id="statSection"
       bottomBorder={props.bottomBorder}
       collapsed={collapsed}
+      titleH1={!!props.titleH1}
     >
       {props.title && (
         <HeaderDiv
@@ -58,8 +59,8 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
           )}
         </HeaderDiv>
       )}
-      {!collapsed && props.children}
-    </Content>
+      {!collapsed && !props.titleH1 && <Content> {props.children}</Content>}
+    </OuterContainer>
   )
 }
 
@@ -71,11 +72,10 @@ const HeaderButton = styled.div<{ fontSize: string }>`
   background-color: inherit;
   font-size: ${(props) => props.fontSize};
   color: ${BLOOD_RED};
-  margin: 10px;
+  margin: 5px;
 `
 
 const Header = styled.div<{ collapsed: boolean }>`
-  margin: 0 0 5px 0;
   width: 100%;
   position: relative;
   
@@ -98,8 +98,8 @@ const TitleH1 = styled.h1`
 
 const TitleH2 = styled.h2`
   text-align: initial;
-  font-size: 18px;
-  margin: 10px;
+  font-size: 16px;
+  margin: 5px;
 `
 
 const HeaderDiv = styled.div`
@@ -108,9 +108,16 @@ const HeaderDiv = styled.div`
   flex-direction: row;
 `
 
-const Content = styled.div<{ bottomBorder: boolean; collapsed: boolean }>`
+const Content = styled.div`
+  padding: 10px 0;
+`
+
+const OuterContainer = styled.div<{
+  bottomBorder: boolean
+  collapsed: boolean
+  titleH1: boolean
+}>`
   border-bottom: ${(props) => (props.bottomBorder ? '1px solid gray' : 'none')};
   display: flex;
   flex-direction: column;
-  padding-bottom: ${(props) => (props.collapsed ? 'none' : '10px')};
 `

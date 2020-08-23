@@ -21,7 +21,7 @@ export default function (props: { xpNumber: number }) {
       maxValue={16}
       descFooter={HuntXpFooter}
       checkboxMargins={true}
-      checkHighlights={[1, 5, 9, 14, 15]}
+      checkHighlights={[2, 6, 10, 15, 16]}
     ></CheckboxStatDisplay>
   )
 }

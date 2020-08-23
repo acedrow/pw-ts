@@ -65,7 +65,7 @@ export default function (props: { defenseStats?: DefenseType[] }) {
               <CheckboxStatDisplay
                 value={0}
                 maxValue={2}
-                checkHighlights={[1]}
+                checkHighlights={[2]}
               ></CheckboxStatDisplay>
             </WoundBoxes>
             <CounterButton
