@@ -66,7 +66,7 @@ export default (props: CheckboxProps) => {
         {checkboxArray.map((checked, index) => (
           <CheckBox
             index={index}
-            onClickCallback={
+            clickCallback={
               props.valueButtons ? undefined : handleCheckboxClick
             }
             checked={checked}

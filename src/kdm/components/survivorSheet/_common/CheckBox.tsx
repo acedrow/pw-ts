@@ -6,7 +6,7 @@ import { BLOOD_RED } from '../../../../pw/components/styling/color'
 export default (props: {
   index: number
   checked: boolean
-  onClickCallback?: (index: number) => void
+  clickCallback?: (index: number) => void
   highlight?: boolean
   checkboxMargins?: boolean
 }) => {
@@ -18,8 +18,8 @@ export default (props: {
       {...props}
       onClick={(e) => {
         console.log(`clicked`)
-        if (props.onClickCallback) {
-          props.onClickCallback(props.index)
+        if (props.clickCallback) {
+          props.clickCallback(props.index)
         }
       }}
     ></Checkbox>
