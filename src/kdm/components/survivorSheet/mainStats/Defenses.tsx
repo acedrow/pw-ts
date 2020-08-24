@@ -4,6 +4,7 @@ import { DefenseType, DEFENSE_NAME } from '../../../data/survivor/SurvivorData'
 import { CounterButton } from '../_common/CommonStyled'
 import { StatsSectionContainer } from './StatsSectionContainer'
 import CheckboxStatDisplay from '../_common/CheckboxStatDisplay'
+import _ from 'lodash'
 
 // armor:  👒 ✋ 🦵 🥋 waist will use belt clip art
 // brain: 🧠
@@ -59,12 +60,18 @@ export default function (props: { defenseStats?: DefenseType[] }) {
             >
               +
             </CounterButton>
-            <span>🧠</span>
+            <DefenseTitle>{_.capitalize(currStat.name)}</DefenseTitle>
+            {/* TODO: value display should be an input field in addition to a counter */}
             <ValueDisplay>{currStat.value}</ValueDisplay>
             <WoundBoxes>
               <CheckboxStatDisplay
                 value={0}
-                maxValue={2}
+                maxValue={
+                  currStat.name === DEFENSE_NAME.BRAIN ||
+                  currStat.name === DEFENSE_NAME.HEAD
+                    ? 1
+                    : 2
+                }
                 checkHighlights={[2]}
               ></CheckboxStatDisplay>
             </WoundBoxes>
@@ -81,6 +88,10 @@ export default function (props: { defenseStats?: DefenseType[] }) {
     </StatsSectionContainer>
   )
 }
+
+const DefenseTitle = styled.span`
+  font-size: 14px;
+`
 
 const Defenses = styled.div`
   display: flex;

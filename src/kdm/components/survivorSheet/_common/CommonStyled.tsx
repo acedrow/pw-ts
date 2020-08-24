@@ -26,3 +26,20 @@ export const CounterButton = styled.button<CounterButtonProps >`
 
   background-color: ${KDM_DARK_GREY};
 `
+
+export const TextAreaDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
+export const UnderlineTextArea = styled.textarea`
+  background-color: transparent;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  border-width: 0 0 1px 0;
+  border-bottom: 1px solid gray;
+  color: white;
+  resize: none;
+  outline: none;
+`
+

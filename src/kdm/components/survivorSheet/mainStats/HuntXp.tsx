@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { BLOOD_RED } from '../../../../pw/components/styling/color'
 import CheckboxStatDisplay from '../_common/CheckboxStatDisplay'
+import { MAX_HUNT_XP, HUNT_XP_MILESTONES } from '../../../data/GAME_CONST';
 
 const huntCheckboxPrefix = 'huntXpTracker'
 
@@ -18,10 +19,10 @@ export default function (props: { xpNumber: number }) {
   return (
     <CheckboxStatDisplay
       value={2}
-      maxValue={16}
+      maxValue={MAX_HUNT_XP}
       descFooter={HuntXpFooter}
       checkboxMargins={true}
-      checkHighlights={[2, 6, 10, 15, 16]}
+      checkHighlights={HUNT_XP_MILESTONES}
     ></CheckboxStatDisplay>
   )
 }

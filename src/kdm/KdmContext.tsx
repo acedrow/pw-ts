@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { ARMOR_LOC, CardData, GearCardData } from './data/gear/CardData'
+import { SurvivorData } from './data/survivor/SurvivorData'
 
 interface KdmContext {
   viewWidth: number;
@@ -8,6 +9,8 @@ interface KdmContext {
   cardLongPressHandler: (cardData: CardData) => void;
   cardShortPressHandler: (cardData: CardData) => void;
   gearCardToDisplay: GearCardData;
+  currentSurvivor: SurvivorData | undefined;
+  setCurrentSurvivor: (survivorData: SurvivorData) => void;
 }
 
 const context = {} as KdmContext
@@ -20,10 +23,7 @@ export const KdmContextProvider = (props: any) => {
     new GearCardData('', ARMOR_LOC.NONE, [], [], [])
   )
   const [viewWidth, setViewWidth] = useState(window.innerWidth)
-
-  useEffect(() => {
-    console.log(`gearCardToDisplay name: ${gearCardToDisplay.cardName}`)
-  }, [gearCardToDisplay])
+  const [currentSurvivor, setCurrentSurvivor] = useState<SurvivorData>()
 
   //TODO: move card interaction stuff to a separate handler class;
 
@@ -131,6 +131,8 @@ export const KdmContextProvider = (props: any) => {
         cardLongPressHandler: cardLongPressHandler,
         cardShortPressHandler: cardShortPressHandler,
         gearCardToDisplay,
+        currentSurvivor,
+        setCurrentSurvivor,
       }}
     >
       {props.children}

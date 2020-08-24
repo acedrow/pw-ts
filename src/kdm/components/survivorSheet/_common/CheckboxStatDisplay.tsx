@@ -15,11 +15,10 @@ interface CheckboxProps {
 
 export default (props: CheckboxProps) => {
   const checkInitValue = (val: number, maxVal: number) => {
-    console.log(`initial value`)
     if (val < -1 || val > maxVal) {
-      return -1
+      return 0
     }
-    return val - 1
+    return val
   }
 
   const getCheckboxArray = (value: number, maxValue: number) => {
@@ -49,6 +48,7 @@ export default (props: CheckboxProps) => {
     //   setValue(index+1)
 
     //this functions more like a counter, tapping right of the last filled box increases value, tapping on it or left of it decreases value
+    console.log(`handle: index: ${index} value: ${value}`)
     if (index < value) {
       setValue(value-1)
     } else {

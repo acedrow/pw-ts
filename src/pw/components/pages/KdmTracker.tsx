@@ -18,8 +18,8 @@ export const KdmTracker = () => {
     <Background bgColor={KDM_PAGE_BACKGROUND}>
       <InnerPageContainer id={'kdmTrackerInner'}>
         <KdmContextProvider>
-          <ViewWidthTracker/>
-          <GearDrawer></GearDrawer>
+          <ViewWidthTracker />
+          <GearDrawer />
           <SurvivorsPage />
           <BottomNav />
         </KdmContextProvider>

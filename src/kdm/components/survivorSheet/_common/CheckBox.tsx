@@ -17,6 +17,7 @@ export default (props: {
       color={checkboxColor}
       {...props}
       onClick={(e) => {
+        console.log(`clicked`)
         if (props.onClickCallback) {
           props.onClickCallback(props.index)
         }

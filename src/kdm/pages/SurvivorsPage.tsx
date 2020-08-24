@@ -13,8 +13,11 @@ import { CRAFT_MAT } from '../data/gear/craftingMaterials'
 import { SurvivorData } from '../data/survivor/SurvivorData'
 import MainSurvivorStats from '../components/survivorSheet/mainStats/MainSurvivorStats'
 import styled from 'styled-components'
+import { KdmContext } from '../KdmContext';
 
 export const SurvivorsPage = () => {
+  const { currentSurvivor, setCurrentSurvivor } = React.useContext(KdmContext)
+
   const TEST_GEAR_DATA = new GearCardData(
     'Arse of Destruction',
     ARMOR_LOC.NONE,
@@ -33,11 +36,27 @@ export const SurvivorsPage = () => {
     [new CraftingCost(CRAFT_MAT.BONE, 1), new CraftingCost(CRAFT_MAT.SINEW, 1)]
   )
 
-  const TEST_SURVIVOR_DATA = new SurvivorData('Jefferson Davis', false, 5, 2, undefined, undefined)
+  const TEST_SURVIVOR_DATA = new SurvivorData(
+    {
+      firstname: 'Jefferson',
+      female: false,
+      lastname: 'Davis',
+      nickname: 'The Hammer',
+    },
+    false,
+    5,
+    2,
+    undefined,
+    undefined
+  )
+
+  React.useEffect(() => {
+    setCurrentSurvivor(TEST_SURVIVOR_DATA)
+  },[])
 
   return (
     <OuterDiv className="KdmTracker">
-      <MainSurvivorStats survivorData={TEST_SURVIVOR_DATA} />
+      <MainSurvivorStats currentSurvivor={currentSurvivor} />
       <GearCard
         display={GEAR_CARD_DISPLAY_TYPE.LARGE_CARD}
         clickable={false}
