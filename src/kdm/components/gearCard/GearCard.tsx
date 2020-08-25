@@ -10,6 +10,7 @@ import {
   KDM_PAGE_BACKGROUND,
 } from '../../../pw/components/styling/color'
 import useLongPress from '../../../util/useLongPress'
+import { BaseFlexDiv } from '../survivorSheet/_common/CommonStyled';
 
 export enum GEAR_CARD_DISPLAY_TYPE {
   SMALL_CARD = 'smallcard',
@@ -98,7 +99,7 @@ export const GearCard = (props: {
           borderVal={getBorderStyle()}
           cardLength={cardLength}
         >
-          <CardDataHolder id="cardDataHolder">
+          <CardDataHolder id="cardDataHolder" flexDir='column'>
             <CardTitle>{cardData.gameData.cardName}</CardTitle>
             {cardData.gameData.weaponStats && (
               <WeaponStatsHolder>
@@ -180,10 +181,8 @@ const CardTitle = styled.span`
   text-align: center;
 `
 
-const CardDataHolder = styled.div`
+const CardDataHolder = styled(BaseFlexDiv)`
   font-family: 'Roboto';
-  display: flex;
-  flex-direction: column;
   grid-column-start: 2;
   grid-column-end: 10;
   grid-row-start: 2;

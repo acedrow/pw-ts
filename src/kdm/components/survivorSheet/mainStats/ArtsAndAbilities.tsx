@@ -1,6 +1,6 @@
 import { StatsSectionContainer } from './StatsSectionContainer'
 import React from 'react'
-import { TextAreaDiv, UnderlineTextArea } from '../_common/CommonStyled'
+import { UnderlineTextArea, BaseFlexDiv } from '../_common/CommonStyled'
 
 export default () => {
   return (
@@ -9,9 +9,9 @@ export default () => {
       bottomBorder={true}
       collapsible={true}
     >
-      <TextAreaDiv>
+      <BaseFlexDiv flexDir={'row'}>
         <UnderlineTextArea rows={1}> TEST AREA! </UnderlineTextArea>
-      </TextAreaDiv>
+      </BaseFlexDiv>
     </StatsSectionContainer>
   )
 }

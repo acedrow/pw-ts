@@ -2,6 +2,7 @@ import { lavender } from "../styling/color"
 import * as React from "react"
 import styled from "styled-components"
 import { NavElement, NavElementType } from "./NavElement"
+import { BaseFlexDiv } from '../../../kdm/components/survivorSheet/_common/CommonStyled';
 
 export const mouseOverColor = 'white'
 export const baseColor = lavender
@@ -13,7 +14,10 @@ export const Topnav = () => {
         <Link to="/" > Home  Test</Link> */}
 
       {/* TODO: put these in a list and map */}
-      <TopNavContainer>
+      <TopNavContainer
+        flexDir='row'
+        justifyContent='flex-end'
+      >
         <NavElement
           navItemText="Home"
           elementType={NavElementType.link}
@@ -65,9 +69,6 @@ export const NavElementStyle = {
   textDecoration: 'none',
 }
 
-const TopNavContainer = styled.div`
-  display: flex;
+const TopNavContainer = styled(BaseFlexDiv)`
   margin: 0 20px 0 20px;
-  flex-direction: row;
-  justify-content: flex-end;
 `

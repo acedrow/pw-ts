@@ -5,6 +5,7 @@ import {
   KDM_DARK_GREY,
   KDM_PAGE_BACKGROUND,
 } from '../../../../pw/components/styling/color'
+import { BaseFlexDiv } from '../_common/CommonStyled';
 
 interface SectionProps {
   bottomBorder: boolean
@@ -31,12 +32,15 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
 
     <OuterContainer
       id="statSection"
+      flexDir='row'
       bottomBorder={props.bottomBorder}
       collapsed={collapsed}
       titleH1={!!props.titleH1}
     >
       {props.title && (
-        <HeaderDiv
+        <BaseFlexDiv
+          flexDir='row'
+          justifyContent='none'
           onClick={
             props.collapsible ? () => setCollapsed(!collapsed) : undefined
           }
@@ -57,7 +61,7 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
               </HeaderButton>
             </Header>
           )}
-        </HeaderDiv>
+        </BaseFlexDiv>
       )}
       {!collapsed && !props.titleH1 && <Content> {props.children}</Content>}
     </OuterContainer>
@@ -102,22 +106,15 @@ const TitleH2 = styled.h2`
   margin: 5px;
 `
 
-const HeaderDiv = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-`
-
 const Content = styled.div`
   padding: 10px 0;
 `
 
-const OuterContainer = styled.div<{
+const OuterContainer = styled(BaseFlexDiv)<{
   bottomBorder: boolean
   collapsed: boolean
   titleH1: boolean
 }>`
   border-bottom: ${(props) => (props.bottomBorder ? '1px solid gray' : 'none')};
-  display: flex;
-  flex-direction: column;
+
 `

@@ -1,23 +1,24 @@
-import styled from "styled-components";
-import { KDM_DARK_GREY, BLOOD_RED } from "../../../../pw/components/styling/color";
+import styled from 'styled-components'
+import {
+  KDM_DARK_GREY,
+  BLOOD_RED,
+} from '../../../../pw/components/styling/color'
 
 interface CounterButtonProps {
-  height?: string;
-  width?: string;
-  margin?: string;
-  
+  height?: string
+  width?: string
+  margin?: string
 }
 
-export const CounterButton = styled.button<CounterButtonProps >`
-  height: ${props => props.height || '5vw'};
-  width: ${props => props.width || '5vw'};;
+export const CounterButton = styled.button<CounterButtonProps>`
+  height: ${(props) => props.height || '5vw'};
+  width: ${(props) => props.width || '5vw'};
   min-width: 5vw;
   min-height: 5vw;
   min-width: 5vw;
-  margin: ${props => props.margin ||'0'};
+  margin: ${(props) => props.margin || '0'};
   max-height: 30px;
   max-width: 30px;
-
 
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   color: white;
@@ -26,11 +27,13 @@ export const CounterButton = styled.button<CounterButtonProps >`
 
   background-color: ${KDM_DARK_GREY};
 `
-
-export const TextAreaDiv = styled.div`
+export const BaseFlexDiv = styled.div<{
+  flexDir: 'row' | 'column'
+  justifyContent?: 'none' | 'center' | 'flex-end'
+}>`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: ${(props) => props.flexDir};
+  justify-content: ${props => props.justifyContent || 'center'};
 `
 
 export const UnderlineTextArea = styled.textarea`
@@ -42,4 +45,3 @@ export const UnderlineTextArea = styled.textarea`
   resize: none;
   outline: none;
 `
-

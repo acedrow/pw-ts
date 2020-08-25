@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { DefenseType, DEFENSE_NAME } from '../../../data/survivor/SurvivorData'
-import { CounterButton } from '../_common/CommonStyled'
+import { CounterButton, BaseFlexDiv } from '../_common/CommonStyled';
 import { StatsSectionContainer } from './StatsSectionContainer'
 import CheckboxStatDisplay from '../_common/CheckboxStatDisplay'
 import _ from 'lodash'
@@ -50,9 +50,9 @@ export default function (props: { defenseStats?: DefenseType[] }) {
       bottomBorder={true}
       collapsible={true}
     >
-      <Defenses id="defensesContainer">
+      <BaseFlexDiv flexDir='row' id="defensesContainer">
         {defenseStats.map((currStat) => (
-          <DefenseDisplay key={currStat.name}>
+          <DefenseDisplay key={currStat.name} flexDir='column'>
             <CounterButton
               onClick={() =>
                 handleStatChange(currStat.name, currStat.value + 1)
@@ -63,7 +63,7 @@ export default function (props: { defenseStats?: DefenseType[] }) {
             <DefenseTitle>{_.capitalize(currStat.name)}</DefenseTitle>
             {/* TODO: value display should be an input field in addition to a counter */}
             <ValueDisplay>{currStat.value}</ValueDisplay>
-            <WoundBoxes>
+            <BaseFlexDiv flexDir='row'>
               <CheckboxStatDisplay
                 value={0}
                 maxValue={
@@ -74,7 +74,7 @@ export default function (props: { defenseStats?: DefenseType[] }) {
                 }
                 checkHighlights={[2]}
               ></CheckboxStatDisplay>
-            </WoundBoxes>
+            </BaseFlexDiv>
             <CounterButton
               onClick={() =>
                 handleStatChange(currStat.name, currStat.value - 1)
@@ -84,7 +84,7 @@ export default function (props: { defenseStats?: DefenseType[] }) {
             </CounterButton>
           </DefenseDisplay>
         ))}
-      </Defenses>
+      </BaseFlexDiv>
     </StatsSectionContainer>
   )
 }
@@ -93,25 +93,10 @@ const DefenseTitle = styled.span`
   font-size: 14px;
 `
 
-const Defenses = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-`
-
-const WoundBoxes = styled.div`
-  display: flex;
-  flex-direction: row;
-`
-
-const DefenseDisplay = styled.div`
+const DefenseDisplay = styled(BaseFlexDiv)`
   min-width: 15%;
   margin: 2px;
   border: 1px solid gray;
-
-  display: flex;
-  flex-direction: column;
   align-items: center;
 `
 

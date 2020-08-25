@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { CounterButton } from './CommonStyled'
+import { CounterButton, BaseFlexDiv } from './CommonStyled';
 import _ from 'lodash'
 import CheckBox from './CheckBox'
 
@@ -57,8 +57,8 @@ export default (props: CheckboxProps) => {
   }
 
   return (
-    <OuterDiv>
-      <CheckboxDiv>
+    <BaseFlexDiv flexDir='column'>
+      <CheckboxDiv flexDir='row'>
         {props.valueButtons && (
           <CounterButton onClick={() => setValue(value - 1)}>-</CounterButton>
         )}
@@ -80,30 +80,21 @@ export default (props: CheckboxProps) => {
         )}
       </CheckboxDiv>
       {props.descFooter && <DescFooter>{props.descFooter}</DescFooter>}
-    </OuterDiv>
+    </BaseFlexDiv>
   )
 }
-
-const OuterDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
 
 const DescFooter = styled.div`
   font-size: 16px;
 `
 
-const CheckboxDiv = styled.div`
+const CheckboxDiv = styled(BaseFlexDiv)`
   margin: 5px 0;
   font-size: 4vw;
   /* TODO: standardize these screen size breakpoints across the tracker app */
   @media (min-width: 600px) {
     font-size: 30px;
   }
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
 `
 /* TODO: implement this */
 const HideTooltipButton = styled.div``

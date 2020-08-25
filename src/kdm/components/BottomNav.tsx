@@ -2,10 +2,11 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { KDM_DARK_GREY } from '../../pw/components/styling/color';
+import { BaseFlexDiv } from './survivorSheet/_common/CommonStyled';
 
 export const BottomNav = () => {
   return (
-    <BottomNavContainer>
+    <BottomNavContainer flexDir={'row'}>
       <BottomNavLink to="/kdm-test" gridcol={1}>
         🏘️
       </BottomNavLink>
@@ -35,10 +36,8 @@ const BottomNavLink = styled(Link)<{ gridcol: number }>`
   width: 20%;
 `
 
-const BottomNavContainer = styled.div`
+const BottomNavContainer = styled(BaseFlexDiv)`
   position: fixed;
   bottom: 0;
   width: 100%;
-  display: flex;
-  flex-direction: row;
 `

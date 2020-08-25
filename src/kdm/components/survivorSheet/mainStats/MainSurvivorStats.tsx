@@ -5,7 +5,7 @@ import {
   SurvivorData,
   getSurvivorName,
 } from '../../../data/survivor/SurvivorData'
-import HuntXp from './HuntXp'
+import HuntXp from './Experiences'
 import { StatsSectionContainer } from './StatsSectionContainer'
 import SurvivalActions from './SurvivalActions'
 import Defenses from './Defenses'
@@ -15,6 +15,7 @@ export default function (props: { currentSurvivor: SurvivorData | undefined }) {
   return (
     //TODO: move statSectionContainers to HuntXp and the like - and add "section" to names of these classes
     //TODO: clicking on name gives options for surname and nickname
+    //TODO: all should pull values from KDM context.currentSurvivor
     /*TODO: add quick display of: 
     - bleed tokens, 
     - XP, courage, understanding
@@ -40,7 +41,7 @@ export default function (props: { currentSurvivor: SurvivorData | undefined }) {
             bottomBorder={true}
             collapsible={true}
           >
-            <HuntXp xpNumber={props.currentSurvivor.experiences.huntXp}></HuntXp>
+            <HuntXp/>
           </StatsSectionContainer>
 
           <StatsSectionContainer
