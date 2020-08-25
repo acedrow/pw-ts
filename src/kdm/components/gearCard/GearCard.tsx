@@ -1,15 +1,15 @@
-import { GearCardData, CardData, AFFINITY_COLOR } from '../data/gear/CardData'
+import { GearCardData, CardData, AFFINITY_COLOR } from '../../data/gear/CardData'
 import { useState, useContext, useEffect, SyntheticEvent } from 'react'
 import * as React from 'react'
 import styled from 'styled-components'
-import { KdmContext } from '../KdmContext'
+import { KdmContext } from '../../KdmContext'
 import { AffinityPips } from './AffinityPips'
 import {
   LIGHT_GREY,
   CARD_BACKGROUND,
   KDM_PAGE_BACKGROUND,
-} from '../../pw/components/styling/color'
-import useLongPress from '../../util/useLongPress'
+} from '../../../pw/components/styling/color'
+import useLongPress from '../../../util/useLongPress'
 
 export enum GEAR_CARD_DISPLAY_TYPE {
   SMALL_CARD = 'smallcard',

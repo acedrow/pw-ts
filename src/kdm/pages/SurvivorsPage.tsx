@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { GearCard, GEAR_CARD_DISPLAY_TYPE } from '../gearCard/GearCard'
+import { GearCard, GEAR_CARD_DISPLAY_TYPE } from '../components/gearCard/GearCard'
 import {
   CardData,
   GearCardData,
@@ -10,7 +10,7 @@ import {
 } from '../data/gear/CardData'
 import { getGearCard } from '../data/gear/gearList'
 import { CRAFT_MAT } from '../data/gear/craftingMaterials'
-import { SurvivorData } from '../data/survivor/SurvivorData'
+import { SurvivorData, Demographics, getStartingSurvivor } from '../data/survivor/SurvivorData';
 import MainSurvivorStats from '../components/survivorSheet/mainStats/MainSurvivorStats'
 import styled from 'styled-components'
 import { KdmContext } from '../KdmContext';
@@ -36,20 +36,8 @@ export const SurvivorsPage = () => {
     [new CraftingCost(CRAFT_MAT.BONE, 1), new CraftingCost(CRAFT_MAT.SINEW, 1)]
   )
 
-  const TEST_SURVIVOR_DATA = new SurvivorData(
-    {
-      firstname: 'Jefferson',
-      female: false,
-      lastname: 'Davis',
-      nickname: 'The Hammer',
-    },
-    false,
-    5,
-    2,
-    undefined,
-    undefined
-  )
-
+  const TEST_SURVIVOR_DATA = getStartingSurvivor('Jefferson', false);
+  
   React.useEffect(() => {
     setCurrentSurvivor(TEST_SURVIVOR_DATA)
   },[])

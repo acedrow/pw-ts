@@ -1,4 +1,42 @@
 import { BLANK_DEFENSE_STATS } from '../../components/survivorSheet/mainStats/Defenses'
+import { DisorderCardData } from '../cards/disorders/disorders-base-game'
+
+export interface Demographics {
+  firstname: string
+  female: boolean
+  lastname?: string
+  nickname?: string
+}
+
+export interface Attributes {
+  movement: number
+  accuracy: number
+  strength: number
+  evasion: number
+  luck: number
+  speed: number
+}
+
+const startingAttributes = {
+  movement: 5,
+  accuracy: 0,
+  strength: 0,
+  evasion: 0,
+  luck: 0,
+  speed: 0,
+}
+
+export interface Experiences {
+  huntXp: number
+  courage: number
+  understanding: number
+}
+
+const startingExperiences = {
+  huntXp: 0,
+  courage: 0,
+  understanding: 0,
+}
 
 export interface SurvivalActions {
   dodge: boolean
@@ -6,6 +44,14 @@ export interface SurvivalActions {
   surge: boolean
   dash: boolean
   endure: boolean
+}
+
+export const startingSurvivalActions = {
+  dodge: true,
+  encourage: false,
+  surge: false,
+  dash: false,
+  endure: false,
 }
 
 export const enum DEFENSE_NAME {
@@ -25,34 +71,44 @@ export interface DefenseType {
 
 export class SurvivorData {
   demographics: Demographics
-  female: boolean
-  xp: number // 16 xp slots, age at 2, 6, 10, 15, retirement @ 16
-  actions: SurvivalActions | undefined
+  attributes: Attributes
+  experiences: Experiences // 16 xp slots, age at 2, 6, 10, 15, retirement @ 16
+  actions: SurvivalActions
   insanity: number
   defenseStats: DefenseType[]
+  disorders: DisorderCardData[]
 
   constructor(
     demographics: Demographics,
-    female: boolean,
-    xp: number,
+    attributes: Attributes | undefined,
+    experiences: Experiences | undefined,
     insanity: number,
     actions: SurvivalActions | undefined,
     defenseStats: DefenseType[] | undefined
   ) {
     this.demographics = demographics
-    this.female = female
-    this.xp = xp
+    this.attributes = attributes || startingAttributes
+    this.experiences = experiences || startingExperiences
     this.insanity = insanity
-    this.actions = actions || undefined
+    this.actions = actions || startingSurvivalActions
     this.defenseStats = defenseStats || BLANK_DEFENSE_STATS
   }
 }
-
-export interface Demographics {
-  firstname: string
+export const getStartingSurvivor = (
+  firstName: string,
   female: boolean
-  lastname?: string
-  nickname?: string
+): SurvivorData => {
+  return new SurvivorData(
+    {
+      firstname: firstName,
+      female: female,
+    },
+    undefined,
+    undefined,
+    5,
+    undefined,
+    undefined
+  )
 }
 
 export const getSurvivorName = (demo: Demographics) => {

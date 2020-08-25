@@ -2,7 +2,7 @@ import { List, ListItem, ListItemText } from '@material-ui/core'
 import React, { useState } from 'react'
 import { GearCardData, CardData } from '../../data/gear/CardData'
 import { Collapse } from '@material-ui/core'
-import { GearCard, GEAR_CARD_DISPLAY_TYPE } from '../../gearCard/GearCard'
+import { GearCard, GEAR_CARD_DISPLAY_TYPE } from '../gearCard/GearCard'
 import shortid from 'shortid'
 
 interface DrawerCatProps {

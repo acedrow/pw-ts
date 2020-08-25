@@ -40,7 +40,7 @@ export default function (props: { currentSurvivor: SurvivorData | undefined }) {
             bottomBorder={true}
             collapsible={true}
           >
-            <HuntXp xpNumber={props.currentSurvivor.xp}></HuntXp>
+            <HuntXp xpNumber={props.currentSurvivor.experiences.huntXp}></HuntXp>
           </StatsSectionContainer>
 
           <StatsSectionContainer

@@ -1,4 +1,4 @@
-import { Affinity, AFF_POS, AFFINITY_COLOR } from '../data/gear/CardData'
+import { Affinity, AFF_POS, AFFINITY_COLOR } from '../../data/gear/CardData'
 import * as React from 'react'
 import styled from 'styled-components'
 import shortid from 'shortid'

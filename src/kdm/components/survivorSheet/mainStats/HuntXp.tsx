@@ -4,7 +4,6 @@ import { BLOOD_RED } from '../../../../pw/components/styling/color'
 import CheckboxStatDisplay from '../_common/CheckboxStatDisplay'
 import { MAX_HUNT_XP, HUNT_XP_MILESTONES } from '../../../data/GAME_CONST';
 
-const huntCheckboxPrefix = 'huntXpTracker'
 
 export default function (props: { xpNumber: number }) {
   const HuntXpFooter = (
