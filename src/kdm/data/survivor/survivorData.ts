@@ -1,5 +1,4 @@
 import { BLANK_DEFENSE_STATS } from '../../components/survivorSheet/mainStats/Defenses'
-import { DisorderCardData } from '../cards/disorders/disorders-base-game'
 import { Experiences, startingExperiences } from './Experiences'
 
 export interface Demographics {
@@ -65,7 +64,7 @@ export class Survivor {
   actions: SurvivalActions
   insanity: number
   defenseStats: DefenseType[]
-  disorders: DisorderCardData[]
+  //TODO: add disorders here - need to use getters and setters where necessary to enforce 3 limit for FAs and disorders
 
   constructor(
     demographics: Demographics,

@@ -12,6 +12,7 @@ import CheckboxStatDisplay from '../_common/CheckboxStatDisplay'
 import { BaseFlexDiv } from '../_common/CommonStyled'
 import { XP_TYPE } from '../../../data/survivor/Experiences'
 
+//TODO: add courage/understanding abilities + footer descriptions
 export default function () {
   const { currentSurvivor, setCurrentSurvivor } = React.useContext(KdmContext)
   const [experiences, setExperiences] = useState(currentSurvivor?.experiences)

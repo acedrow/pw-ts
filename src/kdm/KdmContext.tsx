@@ -2,7 +2,8 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { ARMOR_LOC, CardData, GearCardData } from './data/gear/CardData'
 import { Survivor } from './data/survivor/SurvivorData'
-import { DisorderCardData, disordersBaseGame } from './data/cards/disorders/disorders-base-game';
+import { disordersBaseGame } from './data/cards/disorders/disorders-base-game';
+import { TextCardData } from './data/cards/TextCardData';
 
 interface KdmContext {
   viewWidth: number;
@@ -12,7 +13,7 @@ interface KdmContext {
   gearCardToDisplay: GearCardData;
   currentSurvivor: Survivor | undefined;
   setCurrentSurvivor: (survivorData: Survivor) => void;
-  disorderDeck: DisorderCardData[];
+  disorderDeck: TextCardData[];
 }
 
 const context = {} as KdmContext
@@ -27,7 +28,7 @@ export const KdmContextProvider = (props: any) => {
   const [viewWidth, setViewWidth] = useState(window.innerWidth)
   const [currentSurvivor, setCurrentSurvivor] = useState<Survivor>()
   //currently this only populates with base game, would need to add functionality for expansions.
-  const [disorderDeck, setDisorderDeck] = useState<DisorderCardData[]>(disordersBaseGame)
+  const [disorderDeck, setDisorderDeck] = useState<TextCardData[]>(disordersBaseGame)
 
   //TODO: move card interaction stuff to a separate handler class;
 

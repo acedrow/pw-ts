@@ -6,14 +6,12 @@ import { StatsSectionContainer } from './StatsSectionContainer'
 export default () => {
   return (
     <StatsSectionContainer
-      title={'Arts and Abilities'}
+      title={'Disorders and Impairments'}
       bottomBorder={true}
       collapsible={true}
     >
       <BaseFlexDiv flexDir={'row'}>
-        <Select>
-          
-        </Select>
+
       </BaseFlexDiv>
     </StatsSectionContainer>
   )

@@ -10,6 +10,7 @@ import { StatsSectionContainer } from './StatsSectionContainer'
 import SurvivalActions from './SurvivalActions'
 import Defenses from './Defenses'
 import ArtsAndAbilities from './ArtsAndAbilities'
+import DisordersAndImpairments from './DisordersAndImpairments'
 
 export default function (props: { currentSurvivor: Survivor | undefined }) {
   return (
@@ -35,7 +36,6 @@ export default function (props: { currentSurvivor: Survivor | undefined }) {
             collapsible={false}
           />
 
-          {/* TODO: this should be a catch-all - "Experience" tab includes hunt, courage, understanding */}
           <StatsSectionContainer
             title={'Experience'}
             bottomBorder={true}
@@ -55,6 +55,8 @@ export default function (props: { currentSurvivor: Survivor | undefined }) {
           </StatsSectionContainer>
 
           <ArtsAndAbilities />
+
+          <DisordersAndImpairments />
 
           <Defenses />
         </div>
