@@ -10,7 +10,7 @@ import {
 } from '../data/gear/CardData'
 import { getGearCard } from '../data/gear/gearList'
 import { CRAFT_MAT } from '../data/gear/craftingMaterials'
-import { SurvivorData, Demographics, getStartingSurvivor } from '../data/survivor/SurvivorData';
+import { Survivor, Demographics, getStartingSurvivor } from '../data/survivor/SurvivorData';
 import MainSurvivorStats from '../components/survivorSheet/mainStats/MainSurvivorStats'
 import styled from 'styled-components'
 import { KdmContext } from '../KdmContext';

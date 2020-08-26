@@ -1,6 +1,7 @@
 import { StatsSectionContainer } from './StatsSectionContainer'
 import React from 'react'
 import { UnderlineTextArea, BaseFlexDiv } from '../_common/CommonStyled'
+import { Select } from '@material-ui/core'
 
 export default () => {
   return (
@@ -10,7 +11,9 @@ export default () => {
       collapsible={true}
     >
       <BaseFlexDiv flexDir={'row'}>
-        <UnderlineTextArea rows={1}> TEST AREA! </UnderlineTextArea>
+        <Select>
+          
+        </Select>
       </BaseFlexDiv>
     </StatsSectionContainer>
   )

@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { CounterButton, BaseFlexDiv } from './CommonStyled';
+import { CounterButton, BaseFlexDiv } from './CommonStyled'
 import _ from 'lodash'
 import CheckBox from './CheckBox'
 
 interface CheckboxProps {
   value: number
   maxValue: number
+  label?: string
   descFooter?: JSX.Element
   checkHighlights?: number[]
   valueButtons?: boolean
   checkboxMargins?: boolean
+  onChangeCallback?: (value: number) => void
 }
 
 export default (props: CheckboxProps) => {
@@ -38,6 +40,9 @@ export default (props: CheckboxProps) => {
 
   useEffect(() => {
     setCheckboxArray(getCheckboxArray(value, props.maxValue))
+    if (props.onChangeCallback) {
+      props.onChangeCallback(value)
+    }
   }, [value, setCheckboxArray])
 
   const handleCheckboxClick = (index: number) => {
@@ -50,15 +55,16 @@ export default (props: CheckboxProps) => {
     //this functions more like a counter, tapping right of the last filled box increases value, tapping on it or left of it decreases value
     console.log(`handle: index: ${index} value: ${value}`)
     if (index < value) {
-      setValue(value-1)
+      setValue(value - 1)
     } else {
-      setValue(value+1)
+      setValue(value + 1)
     }
   }
 
   return (
-    <BaseFlexDiv flexDir='column'>
-      <CheckboxDiv flexDir='row'>
+    <OuterContainer flexDir="column">
+      {props.label && <Label>{props.label}</Label>}
+      <CheckboxDiv flexDir="row">
         {props.valueButtons && (
           <CounterButton onClick={() => setValue(value - 1)}>-</CounterButton>
         )}
@@ -66,9 +72,7 @@ export default (props: CheckboxProps) => {
         {checkboxArray.map((checked, index) => (
           <CheckBox
             index={index}
-            clickCallback={
-              props.valueButtons ? undefined : handleCheckboxClick
-            }
+            clickCallback={props.valueButtons ? undefined : handleCheckboxClick}
             checked={checked}
             highlight={props.checkHighlights?.includes(index + 1)}
             {...props}
@@ -80,12 +84,20 @@ export default (props: CheckboxProps) => {
         )}
       </CheckboxDiv>
       {props.descFooter && <DescFooter>{props.descFooter}</DescFooter>}
-    </BaseFlexDiv>
+    </OuterContainer>
   )
 }
+const OuterContainer = styled(BaseFlexDiv)`
+  margin-bottom: 10px;
+`;
+
+const Label = styled.span`
+  font-size: 16px;
+  font-weight: bold;
+`;
 
 const DescFooter = styled.div`
-  font-size: 16px;
+  font-size: 14px;
 `
 
 const CheckboxDiv = styled(BaseFlexDiv)`

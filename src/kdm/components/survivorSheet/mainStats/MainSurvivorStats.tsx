@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { KDM_DARK_GREY } from '../../../../pw/components/styling/color'
 import {
-  SurvivorData,
+  Survivor,
   getSurvivorName,
 } from '../../../data/survivor/SurvivorData'
 import HuntXp from './Experiences'
@@ -11,7 +11,7 @@ import SurvivalActions from './SurvivalActions'
 import Defenses from './Defenses'
 import ArtsAndAbilities from './ArtsAndAbilities'
 
-export default function (props: { currentSurvivor: SurvivorData | undefined }) {
+export default function (props: { currentSurvivor: Survivor | undefined }) {
   return (
     //TODO: move statSectionContainers to HuntXp and the like - and add "section" to names of these classes
     //TODO: clicking on name gives options for surname and nickname
@@ -37,7 +37,7 @@ export default function (props: { currentSurvivor: SurvivorData | undefined }) {
 
           {/* TODO: this should be a catch-all - "Experience" tab includes hunt, courage, understanding */}
           <StatsSectionContainer
-            title={'Hunt XP'}
+            title={'Experience'}
             bottomBorder={true}
             collapsible={true}
           >

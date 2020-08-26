@@ -1,5 +1,6 @@
 import { BLANK_DEFENSE_STATS } from '../../components/survivorSheet/mainStats/Defenses'
 import { DisorderCardData } from '../cards/disorders/disorders-base-game'
+import { Experiences, startingExperiences } from './Experiences'
 
 export interface Demographics {
   firstname: string
@@ -24,18 +25,6 @@ const startingAttributes = {
   evasion: 0,
   luck: 0,
   speed: 0,
-}
-
-export interface Experiences {
-  huntXp: number
-  courage: number
-  understanding: number
-}
-
-const startingExperiences = {
-  huntXp: 0,
-  courage: 0,
-  understanding: 0,
 }
 
 export interface SurvivalActions {
@@ -69,7 +58,7 @@ export interface DefenseType {
   checkBoxes: boolean[]
 }
 
-export class SurvivorData {
+export class Survivor {
   demographics: Demographics
   attributes: Attributes
   experiences: Experiences // 16 xp slots, age at 2, 6, 10, 15, retirement @ 16
@@ -97,8 +86,8 @@ export class SurvivorData {
 export const getStartingSurvivor = (
   firstName: string,
   female: boolean
-): SurvivorData => {
-  return new SurvivorData(
+): Survivor => {
+  return new Survivor(
     {
       firstname: firstName,
       female: female,

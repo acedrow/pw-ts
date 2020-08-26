@@ -32,7 +32,7 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
 
     <OuterContainer
       id="statSection"
-      flexDir='row'
+      flexDir='column'
       bottomBorder={props.bottomBorder}
       collapsed={collapsed}
       titleH1={!!props.titleH1}

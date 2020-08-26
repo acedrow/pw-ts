@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { ARMOR_LOC, CardData, GearCardData } from './data/gear/CardData'
-import { SurvivorData } from './data/survivor/SurvivorData'
+import { Survivor } from './data/survivor/SurvivorData'
 import { DisorderCardData, disordersBaseGame } from './data/cards/disorders/disorders-base-game';
 
 interface KdmContext {
@@ -10,8 +10,8 @@ interface KdmContext {
   cardLongPressHandler: (cardData: CardData) => void;
   cardShortPressHandler: (cardData: CardData) => void;
   gearCardToDisplay: GearCardData;
-  currentSurvivor: SurvivorData | undefined;
-  setCurrentSurvivor: (survivorData: SurvivorData) => void;
+  currentSurvivor: Survivor | undefined;
+  setCurrentSurvivor: (survivorData: Survivor) => void;
   disorderDeck: DisorderCardData[];
 }
 
@@ -25,7 +25,7 @@ export const KdmContextProvider = (props: any) => {
     new GearCardData('', ARMOR_LOC.NONE, [], [], [])
   )
   const [viewWidth, setViewWidth] = useState(window.innerWidth)
-  const [currentSurvivor, setCurrentSurvivor] = useState<SurvivorData>()
+  const [currentSurvivor, setCurrentSurvivor] = useState<Survivor>()
   //currently this only populates with base game, would need to add functionality for expansions.
   const [disorderDeck, setDisorderDeck] = useState<DisorderCardData[]>(disordersBaseGame)
 
