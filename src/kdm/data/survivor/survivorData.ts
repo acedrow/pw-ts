@@ -1,5 +1,6 @@
 import { BLANK_DEFENSE_STATS } from '../../components/survivorSheet/mainStats/Defenses'
 import { Experiences, startingExperiences } from './Experiences'
+import { TextCardData } from '../cards/TextCardData'
 
 export interface Demographics {
   firstname: string
@@ -64,6 +65,7 @@ export class Survivor {
   actions: SurvivalActions
   insanity: number
   defenseStats: DefenseType[]
+  private _disorders: TextCardData[]
   //TODO: add disorders here - need to use getters and setters where necessary to enforce 3 limit for FAs and disorders
 
   constructor(
@@ -80,6 +82,18 @@ export class Survivor {
     this.insanity = insanity
     this.actions = actions || startingSurvivalActions
     this.defenseStats = defenseStats || BLANK_DEFENSE_STATS
+  }
+
+  get disorders() {
+    return this._disorders
+  }
+
+  set disorders(newDisorders: TextCardData[]) {
+    if (newDisorders.length > 3) {
+      console.error('Error: Cannot set more than 3 disorders')
+      return
+    }
+    this._disorders = newDisorders
   }
 }
 export const getStartingSurvivor = (

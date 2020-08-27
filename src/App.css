@@ -61,4 +61,7 @@ button {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
+.MuiMenu-list{
+  color: white;
+}
 

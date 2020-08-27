@@ -11,9 +11,7 @@ export default () => {
       collapsible={true}
     >
       <BaseFlexDiv flexDir={'row'}>
-        <Select>
-          
-        </Select>
+
       </BaseFlexDiv>
     </StatsSectionContainer>
   )

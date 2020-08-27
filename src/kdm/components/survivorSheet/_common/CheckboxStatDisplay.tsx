@@ -12,7 +12,7 @@ interface CheckboxProps {
   checkHighlights?: number[]
   valueButtons?: boolean
   checkboxMargins?: boolean
-  onChangeCallback?: (value: number) => void
+  changeCallback?: (value: number) => void
 }
 
 export default (props: CheckboxProps) => {
@@ -40,8 +40,8 @@ export default (props: CheckboxProps) => {
 
   useEffect(() => {
     setCheckboxArray(getCheckboxArray(value, props.maxValue))
-    if (props.onChangeCallback) {
-      props.onChangeCallback(value)
+    if (props.changeCallback) {
+      props.changeCallback(value)
     }
   }, [value, setCheckboxArray])
 

@@ -34,6 +34,7 @@ export const BaseFlexDiv = styled.div<{
   display: flex;
   flex-direction: ${(props) => props.flexDir};
   justify-content: ${props => props.justifyContent || 'center'};
+  width: 100%;
 `
 
 export const UnderlineTextArea = styled.textarea`

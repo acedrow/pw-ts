@@ -64,7 +64,7 @@ export default function () {
             descFooter={HuntXpFooter}
             checkboxMargins={true}
             checkHighlights={HUNT_XP_MILESTONES}
-            onChangeCallback={(value: number) => {
+            changeCallback={(value: number) => {
               handleHuntXpChange(value, XP_TYPE.HUNT)
             }}
           ></CheckboxStatDisplay>
@@ -75,7 +75,7 @@ export default function () {
             descFooter={CourageFooter}
             checkboxMargins={true}
             checkHighlights={COURAGE_UNDERSTANDING_MILESTONES}
-            onChangeCallback={(value: number) => {
+            changeCallback={(value: number) => {
               handleHuntXpChange(value, XP_TYPE.COURAGE)
             }}
           ></CheckboxStatDisplay>
@@ -87,7 +87,7 @@ export default function () {
             descFooter={UnderstandingFooter}
             checkboxMargins={true}
             checkHighlights={COURAGE_UNDERSTANDING_MILESTONES}
-            onChangeCallback={(value: number) => {
+            changeCallback={(value: number) => {
               handleHuntXpChange(value, XP_TYPE.UNDERSTANDING)
             }}
           ></CheckboxStatDisplay>
