@@ -1,5 +1,5 @@
 import { BLANK_DEFENSE_STATS } from '../../components/survivorSheet/mainStats/Defenses'
-import { Experiences, startingExperiences } from './Experiences'
+import { Experiences, startingExperiences } from './ExperiencesData'
 import { TextCardData } from '../cards/TextCardData'
 
 export interface Demographics {

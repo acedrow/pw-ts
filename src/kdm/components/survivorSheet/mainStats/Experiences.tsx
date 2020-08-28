@@ -10,7 +10,7 @@ import {
 import { KdmContext } from '../../../KdmContext'
 import CheckboxStatDisplay from '../_common/CheckboxStatDisplay'
 import { BaseFlexDiv } from '../_common/CommonStyled'
-import { XP_TYPE } from '../../../data/survivor/Experiences'
+import { XP_TYPE } from '../../../data/survivor/ExperiencesData'
 
 //TODO: add courage/understanding abilities + footer descriptions
 export default function () {
@@ -102,11 +102,6 @@ export default function () {
 const RedSpan = styled.span`
   color: ${BLOOD_RED};
   font-weight: bold;
-`
-
-const CourageUndDiv = styled.div`
-  border: 1px solid gray;
-  padding: 5px;
 `
 
 const HuntXpFooter = (

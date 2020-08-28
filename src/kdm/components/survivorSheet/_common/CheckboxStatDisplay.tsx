@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { CounterButton, BaseFlexDiv } from './CommonStyled'
 import _ from 'lodash'
 import CheckBox from './CheckBox'
+import TooltipButton from '../../_common/TooltipButton'
 
 interface CheckboxProps {
   value: number
@@ -16,6 +17,8 @@ interface CheckboxProps {
 }
 
 export default (props: CheckboxProps) => {
+  const [showFooter, setShowFooter] = useState(false)
+
   const checkInitValue = (val: number, maxVal: number) => {
     if (val < -1 || val > maxVal) {
       return 0
@@ -53,7 +56,6 @@ export default (props: CheckboxProps) => {
     //   setValue(index+1)
 
     //this functions more like a counter, tapping right of the last filled box increases value, tapping on it or left of it decreases value
-    console.log(`handle: index: ${index} value: ${value}`)
     if (index < value) {
       setValue(value - 1)
     } else {
@@ -63,7 +65,16 @@ export default (props: CheckboxProps) => {
 
   return (
     <OuterContainer flexDir="column">
-      {props.label && <Label>{props.label}</Label>}
+      {props.label && (
+        <BaseFlexDiv flexDir="row">
+          <Label>{props.label}</Label>
+          &nbsp;
+          <TooltipButton
+            tooltipOpen={showFooter}
+            setTooltipOpen={setShowFooter}
+          />
+        </BaseFlexDiv>
+      )}
       <CheckboxDiv flexDir="row">
         {props.valueButtons && (
           <CounterButton onClick={() => setValue(value - 1)}>-</CounterButton>
@@ -83,18 +94,18 @@ export default (props: CheckboxProps) => {
           <CounterButton onClick={() => setValue(value + 1)}>+</CounterButton>
         )}
       </CheckboxDiv>
-      {props.descFooter && <DescFooter>{props.descFooter}</DescFooter>}
+      {props.descFooter && showFooter && <DescFooter>{props.descFooter}</DescFooter>}
     </OuterContainer>
   )
 }
 const OuterContainer = styled(BaseFlexDiv)`
   margin-bottom: 10px;
-`;
+`
 
 const Label = styled.span`
   font-size: 16px;
   font-weight: bold;
-`;
+`
 
 const DescFooter = styled.div`
   font-size: 14px;

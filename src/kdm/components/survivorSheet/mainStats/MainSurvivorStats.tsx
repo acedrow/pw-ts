@@ -40,6 +40,8 @@ export default function (props: { currentSurvivor: Survivor | undefined }) {
             title={'Experience'}
             bottomBorder={true}
             collapsible={true}
+            // startsCollapsed={true}
+            
           >
             <HuntXp/>
           </StatsSectionContainer>

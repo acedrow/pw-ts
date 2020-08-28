@@ -5,13 +5,14 @@ import {
   KDM_DARK_GREY,
   KDM_PAGE_BACKGROUND,
 } from '../../../../pw/components/styling/color'
-import { BaseFlexDiv } from '../_common/CommonStyled';
+import { BaseFlexDiv } from '../_common/CommonStyled'
 
 interface SectionProps {
   bottomBorder: boolean
   title?: string
   titleH1?: boolean
   collapsible?: boolean
+  startsCollapsed?: boolean
 }
 
 export const StatsSectionContainer: FunctionComponent<SectionProps> = (
@@ -19,7 +20,7 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
 ) => {
   const h1Symbols = ['⛧', '⌾']
   const [h1SymbolIndex, setH1SymbolIndex] = useState(0)
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(props.startsCollapsed || false)
 
   const getNewH1Symbol = () => {
     if (h1SymbolIndex >= h1Symbols.length - 1) {
@@ -32,15 +33,15 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
 
     <OuterContainer
       id="statSection"
-      flexDir='column'
+      flexDir="column"
       bottomBorder={props.bottomBorder}
       collapsed={collapsed}
       titleH1={!!props.titleH1}
     >
       {props.title && (
         <BaseFlexDiv
-          flexDir='row'
-          justifyContent='none'
+          flexDir="row"
+          justifyContent="none"
           onClick={
             props.collapsible ? () => setCollapsed(!collapsed) : undefined
           }
@@ -82,15 +83,15 @@ const HeaderButton = styled.div<{ fontSize: string }>`
 const Header = styled.div<{ collapsed: boolean }>`
   width: 100%;
   position: relative;
-  
+
   /* background: rgb(0,0,0);
   background: ${(props) =>
     props.collapsed
       ? KDM_DARK_GREY
       : 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(15,15,15,1) 25%, rgba(26,26,26,1) 51%, rgba(49,49,49,1) 100%)'}; */
 
-   background-color: ${(props) =>
-     props.collapsed ? KDM_DARK_GREY : KDM_PAGE_BACKGROUND}; 
+  background-color: ${(props) =>
+    props.collapsed ? KDM_DARK_GREY : KDM_PAGE_BACKGROUND};
   transition: background-color 1s;
 `
 
@@ -116,5 +117,4 @@ const OuterContainer = styled(BaseFlexDiv)<{
   titleH1: boolean
 }>`
   border-bottom: ${(props) => (props.bottomBorder ? '1px solid gray' : 'none')};
-
 `
