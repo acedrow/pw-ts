@@ -16,26 +16,13 @@ brown #402318
 lavender #d1a9c7
 */
 
-html {
-  height: 100%;
-  width: 100%;
-}
-
-
-.App {
-  font-family: 'Yeseva One', cursive;
-  height: 100%;
-}
-
-#root {
-  height: 100%;
-}
-
+html,
 body {
-  height: 100%;
   width: 100%;
-  font-family: 'Yeseva One', cursive;
-  margin: 0 0 0 0; 
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
 }
 
 /*
@@ -50,21 +37,20 @@ button {
   outline: none;
 }
 
-
 .KdmTracker {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   color: white;
 }
 
-.MuiPaper-root{
+.MuiPaper-root {
   background-color: black !important;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
-.MuiMenu-list{
+.MuiMenu-list {
   color: white;
 }
 
-.MuiInputBase-root{
+.MuiInputBase-root {
   color: white !important;
 }

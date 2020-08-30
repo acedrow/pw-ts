@@ -37,6 +37,7 @@ const BottomNavLink = styled(Link)<{ gridcol: number }>`
 `
 
 const BottomNavContainer = styled(BaseFlexDiv)`
+  text-align: center;
   position: fixed;
   bottom: 0;
   width: 100%;

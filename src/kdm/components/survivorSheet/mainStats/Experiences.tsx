@@ -11,11 +11,12 @@ import { KdmContext } from '../../../KdmContext'
 import CheckboxStatDisplay from '../_common/CheckboxStatDisplay'
 import { BaseFlexDiv } from '../_common/CommonStyled'
 import { XP_TYPE } from '../../../data/survivor/ExperiencesData'
+import { StatsSectionContainer } from './StatsSectionContainer'
 
 //TODO: add courage/understanding abilities + footer descriptions
 export default function () {
   const { currentSurvivor, setCurrentSurvivor } = useContext(KdmContext)
-  const [experiences, setExperiences] = useState(currentSurvivor?.experiences)
+  // const [experiences, setExperiences] = useState(currentSurvivor?.experiences)
 
   // useEffect(() => {
   //   setExperiences
@@ -45,7 +46,7 @@ export default function () {
       }
 
       tempSurvivor.experiences = experiences
-      setCurrentSurvivor({...tempSurvivor})
+      setCurrentSurvivor({ ...tempSurvivor })
     } else {
       console.error(
         'Error handling hunt experience change: no current survivor'
@@ -54,12 +55,17 @@ export default function () {
   }
 
   return (
-    <>
-      {experiences && (
+    <StatsSectionContainer
+      title={'Experience'}
+      bottomBorder={true}
+      collapsible={true}
+      // startsCollapsed={true}
+    >
+      {currentSurvivor.experiences && (
         <BaseFlexDiv flexDir="column">
           <CheckboxStatDisplay
             label="Hunt XP"
-            value={experiences.huntXp}
+            value={currentSurvivor.experiences.huntXp}
             maxValue={MAX_HUNT_XP}
             descFooter={HuntXpFooter}
             checkboxMargins={true}
@@ -70,7 +76,7 @@ export default function () {
           ></CheckboxStatDisplay>
           <CheckboxStatDisplay
             label="Courage"
-            value={experiences.courage.value}
+            value={currentSurvivor.experiences.courage.value}
             maxValue={MAX_COURAGE_UNDERSTANDING}
             descFooter={CourageFooter}
             checkboxMargins={true}
@@ -82,7 +88,7 @@ export default function () {
 
           <CheckboxStatDisplay
             label="Understanding"
-            value={experiences.understanding.value}
+            value={currentSurvivor.experiences.understanding.value}
             maxValue={MAX_COURAGE_UNDERSTANDING}
             descFooter={UnderstandingFooter}
             checkboxMargins={true}
@@ -94,8 +100,8 @@ export default function () {
         </BaseFlexDiv>
       )}
 
-      {!experiences && <span>Couldn't load survivor experience data</span>}
-    </>
+      {!currentSurvivor.experiences && <span>Couldn't load survivor experience data</span>}
+    </StatsSectionContainer>
   )
 }
 

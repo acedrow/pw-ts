@@ -4,9 +4,8 @@ import { BottomNav } from '../../../kdm/components/BottomNav'
 import { GearDrawer } from '../../../kdm/components/gearDrawer/GearDrawer'
 import { KdmContextProvider } from '../../../kdm/KdmContext'
 import { SurvivorsPage } from '../../../kdm/pages/SurvivorsPage'
-import { KDM_PAGE_BACKGROUND } from '../styling/color'
-import { Background } from './Background'
 import { ViewWidthTracker } from '../../../util/ViewWidthTracker'
+import { KDM_PAGE_BACKGROUND } from '../styling/color'
 
 //largest view width (px) mobile layout is used before switching to larger screen view.
 export const MAX_MOBILE_VIEW_WIDTH = 1000
@@ -15,7 +14,7 @@ export const MAX_VIEW_WIDTH = 1200
 
 export const KdmTracker = () => {
   return (
-    <Background bgColor={KDM_PAGE_BACKGROUND}>
+    <KdmBackground id='kdmBackground'>
       <InnerPageContainer id={'kdmTrackerInner'}>
         <KdmContextProvider>
           <ViewWidthTracker />
@@ -24,14 +23,15 @@ export const KdmTracker = () => {
           <BottomNav />
         </KdmContextProvider>
       </InnerPageContainer>
-    </Background>
+    </KdmBackground>
   )
 }
+
+const KdmBackground = styled.div`
+  background-color: ${KDM_PAGE_BACKGROUND};
+`
 
 const InnerPageContainer = styled.div`
   max-width: ${MAX_VIEW_WIDTH}px;
   font-family: 'Roboto';
-  margin: auto;
-  /* TODO: testing values below, delete */
-  height: 1200px;
 `

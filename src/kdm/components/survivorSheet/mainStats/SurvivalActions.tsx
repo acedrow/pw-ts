@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { SurvivalActions } from '../../../data/survivor/SurvivorData'
 import styled from 'styled-components'
+import { StatsSectionContainer } from './StatsSectionContainer'
+import { KdmContext } from '../../../KdmContext'
 
 /*
 ☑☐
@@ -11,21 +13,24 @@ import styled from 'styled-components'
   endure: boolean
 
 */
-export default function (props: {
-  survivalActions: SurvivalActions | undefined
-}) {
+export default () => {
+  const { currentSurvivor, setCurrentSurvivor } = useContext(KdmContext)
   const [survivalActions, setSurvivalActions] = useState<SurvivalActions>(
-    props.survivalActions || {
-      dodge: false,
-      encourage: false,
-      surge: false,
-      dash: false,
-      endure: false,
-    }
+    currentSurvivor.actions
   )
 
+  useEffect(() => {
+    let tempSurvivor = currentSurvivor;
+    tempSurvivor.actions = survivalActions;
+    setCurrentSurvivor({...tempSurvivor})
+  }, [survivalActions, setSurvivalActions])
+
   return (
-    <>
+    <StatsSectionContainer
+      title={'Survival Actions'}
+      bottomBorder={true}
+      collapsible={true}
+    >
       <OuterDiv>
         <ActionButton
           onClick={() =>
@@ -78,7 +83,7 @@ export default function (props: {
           Endure {survivalActions?.endure ? `☑` : `☐`}
         </ActionButton>
       </OuterDiv>
-    </>
+    </StatsSectionContainer>
   )
 }
 

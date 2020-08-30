@@ -8,16 +8,6 @@ export interface BgiProps {
 }
 
 export const Background = (props: BgiProps) => {
-  // const bgStyle = {
-  //   width: '100vw',
-  //   height: '100vh',
-  //   maxWidth: '100%',
-  //   minHeight: '800px',
-  //   backgroundImage: `url(${props.imageUrl})`,
-  //   backgroundColor: 'grey',
-  //   backgroundSize: 'cover',
-  //   backgroundPosition: 'bottom',
-  // }
   console.log('imageUrl: ' + props.imageUrl)
   return (
     <BackgroundImageDiv

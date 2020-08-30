@@ -1,6 +1,5 @@
-import { BLANK_DEFENSE_STATS } from '../../components/survivorSheet/mainStats/Defenses'
-import { Experiences, startingExperiences } from './ExperiencesData'
 import { TextCardData } from '../cards/TextCardData'
+import { Experiences, startingExperiences } from './ExperiencesData'
 
 export interface Demographics {
   firstname: string
@@ -57,6 +56,15 @@ export interface DefenseType {
   value: number
   checkBoxes: boolean[]
 }
+
+const BLANK_DEFENSE_STATS: DefenseType[] = [
+  { name: DEFENSE_NAME.BRAIN, value: 0, checkBoxes: [false] },
+  { name: DEFENSE_NAME.HEAD, value: 0, checkBoxes: [false] },
+  { name: DEFENSE_NAME.ARMS, value: 0, checkBoxes: [false, false] },
+  { name: DEFENSE_NAME.LEGS, value: 0, checkBoxes: [false, false] },
+  { name: DEFENSE_NAME.BODY, value: 0, checkBoxes: [false, false] },
+  { name: DEFENSE_NAME.WAIST, value: 0, checkBoxes: [false, false] },
+]
 
 export class Survivor {
   demographics: Demographics

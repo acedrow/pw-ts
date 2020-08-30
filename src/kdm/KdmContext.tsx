@@ -34,19 +34,24 @@ export const KdmContextProvider = (props: any) => {
     disordersBaseGame
   )
 
-  // useEffect(() => {
-  //   console.log(`KDM CONTEXT CURRENT SURVIVOR"`)
-  //   console.log(
-  //     `experience: ${JSON.stringify(
-  //       currentSurvivor.experiences
-  //     )}`
-  //   )
-  //   console.log(
-  //     `disorders: ${JSON.stringify(
-  //       currentSurvivor.disorders
-  //     )}`
-  //   )
-  // }, [currentSurvivor, setCurrentSurvivor])
+  useEffect(() => {
+    console.log(`KDM CONTEXT CURRENT SURVIVOR:`)
+    // console.log(
+    //   `experience: ${JSON.stringify(
+    //     currentSurvivor.experiences
+    //   )}`
+    // )
+    // console.log(
+    //   `disorders: ${JSON.stringify(
+    //     currentSurvivor.disorders
+    //   )}`
+    // )
+    console.log(
+      `defense: ${JSON.stringify(
+        currentSurvivor.defenseStats
+      )}`
+    )
+  }, [currentSurvivor, setCurrentSurvivor])
 
   //TODO: move card interaction stuff to a separate handler class;
   const gearCardInteraction = (cardData: CardData, setTarget: boolean) => {

@@ -95,6 +95,15 @@ const Header = styled.div<{ collapsed: boolean }>`
   transition: background-color 1s;
 `
 
+const OuterContainer = styled(BaseFlexDiv)<{
+  bottomBorder: boolean
+  collapsed: boolean
+  titleH1: boolean
+}>`
+  text-align: center;
+  border-bottom: ${(props) => (props.bottomBorder ? '1px solid gray' : 'none')};
+`
+
 const TitleH1 = styled.h1`
   text-align: initial;
   font-size: 24px;
@@ -111,10 +120,4 @@ const Content = styled.div`
   padding: 10px 0;
 `
 
-const OuterContainer = styled(BaseFlexDiv)<{
-  bottomBorder: boolean
-  collapsed: boolean
-  titleH1: boolean
-}>`
-  border-bottom: ${(props) => (props.bottomBorder ? '1px solid gray' : 'none')};
-`
+

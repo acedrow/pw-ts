@@ -1,10 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { KDM_DARK_GREY } from '../../../../pw/components/styling/color'
-import {
-  Survivor,
-  getSurvivorName,
-} from '../../../data/survivor/SurvivorData'
+import { Survivor, getSurvivorName } from '../../../data/survivor/SurvivorData'
 import Experiences from './Experiences'
 import { StatsSectionContainer } from './StatsSectionContainer'
 import SurvivalActions from './SurvivalActions'
@@ -14,9 +11,7 @@ import DisordersAndImpairments from './DisordersAndImpairments'
 
 export default function (props: { currentSurvivor: Survivor | undefined }) {
   return (
-    //TODO: move statSectionContainers to HuntXp and the like - and add "section" to names of these classes
     //TODO: clicking on name gives options for surname and nickname
-    //TODO: all should pull values from KDM context.currentSurvivor
     /*TODO: add quick display of: 
     - bleed tokens, 
     - XP, courage, understanding
@@ -36,25 +31,9 @@ export default function (props: { currentSurvivor: Survivor | undefined }) {
             collapsible={false}
           />
 
-          <StatsSectionContainer
-            title={'Experience'}
-            bottomBorder={true}
-            collapsible={true}
-            // startsCollapsed={true}
-            
-          >
-            <Experiences/>
-          </StatsSectionContainer>
+          <Experiences />
 
-          <StatsSectionContainer
-            title={'Survival Actions'}
-            bottomBorder={true}
-            collapsible={true}
-          >
-            <SurvivalActions
-              survivalActions={props.currentSurvivor.actions || undefined}
-            ></SurvivalActions>
-          </StatsSectionContainer>
+          <SurvivalActions />
 
           <ArtsAndAbilities />
 
