@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styled from 'styled-components'
 import { BLOOD_RED } from '../../../../pw/components/styling/color'
 import {
@@ -14,12 +14,12 @@ import { XP_TYPE } from '../../../data/survivor/ExperiencesData'
 
 //TODO: add courage/understanding abilities + footer descriptions
 export default function () {
-  const { currentSurvivor, setCurrentSurvivor } = React.useContext(KdmContext)
+  const { currentSurvivor, setCurrentSurvivor } = useContext(KdmContext)
   const [experiences, setExperiences] = useState(currentSurvivor?.experiences)
 
-  useEffect(() => {
-    setExperiences
-  }, [currentSurvivor])
+  // useEffect(() => {
+  //   setExperiences
+  // }, [currentSurvivor])
 
   const handleHuntXpChange = (value: number, xpType: XP_TYPE) => {
     if (currentSurvivor) {
@@ -45,7 +45,7 @@ export default function () {
       }
 
       tempSurvivor.experiences = experiences
-      setCurrentSurvivor(tempSurvivor)
+      setCurrentSurvivor({...tempSurvivor})
     } else {
       console.error(
         'Error handling hunt experience change: no current survivor'

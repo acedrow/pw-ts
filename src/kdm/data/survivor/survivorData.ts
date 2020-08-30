@@ -65,7 +65,7 @@ export class Survivor {
   actions: SurvivalActions
   insanity: number
   defenseStats: DefenseType[]
-  private _disorders: TextCardData[]
+  disorders: TextCardData[]
   //TODO: add disorders here - need to use getters and setters where necessary to enforce 3 limit for FAs and disorders
 
   constructor(
@@ -74,7 +74,8 @@ export class Survivor {
     experiences: Experiences | undefined,
     insanity: number,
     actions: SurvivalActions | undefined,
-    defenseStats: DefenseType[] | undefined
+    defenseStats: DefenseType[] | undefined,
+    disorders: TextCardData[] | undefined,
   ) {
     this.demographics = demographics
     this.attributes = attributes || startingAttributes
@@ -82,19 +83,20 @@ export class Survivor {
     this.insanity = insanity
     this.actions = actions || startingSurvivalActions
     this.defenseStats = defenseStats || BLANK_DEFENSE_STATS
+    this.disorders = disorders || []
   }
 
-  get disorders() {
-    return this._disorders
-  }
+  // get disorders() {
+  //   return this._disorders
+  // }
 
-  set disorders(newDisorders: TextCardData[]) {
-    if (newDisorders.length > 3) {
-      console.error('Error: Cannot set more than 3 disorders')
-      return
-    }
-    this._disorders = newDisorders
-  }
+  // set disorders(newDisorders: TextCardData[]) {
+  //   if (newDisorders && newDisorders.length > 3) {
+  //     console.error('Error: Cannot set more than 3 disorders')
+  //     return
+  //   }
+  //   this._disorders = newDisorders
+  // }
 }
 export const getStartingSurvivor = (
   firstName: string,
@@ -109,7 +111,8 @@ export const getStartingSurvivor = (
     undefined,
     5,
     undefined,
-    undefined
+    undefined, 
+    undefined,
   )
 }
 

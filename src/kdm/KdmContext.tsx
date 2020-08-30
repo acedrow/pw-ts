@@ -1,19 +1,19 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { ARMOR_LOC, CardData, GearCardData } from './data/gear/CardData'
-import { Survivor } from './data/survivor/SurvivorData'
-import { disordersBaseGame } from './data/cards/disorders/disorders-base-game';
-import { TextCardData } from './data/cards/TextCardData';
+import { Survivor, getStartingSurvivor } from './data/survivor/SurvivorData'
+import { disordersBaseGame } from './data/cards/disorders/disorders-base-game'
+import { TextCardData } from './data/cards/TextCardData'
 
 interface KdmContext {
-  viewWidth: number;
-  setViewWidth: (width: number) => void;
-  cardLongPressHandler: (cardData: CardData) => void;
-  cardShortPressHandler: (cardData: CardData) => void;
-  gearCardToDisplay: GearCardData;
-  currentSurvivor: Survivor | undefined;
-  setCurrentSurvivor: (survivorData: Survivor) => void;
-  disorderDeck: TextCardData[];
+  viewWidth: number
+  setViewWidth: (width: number) => void
+  cardLongPressHandler: (cardData: CardData) => void
+  cardShortPressHandler: (cardData: CardData) => void
+  gearCardToDisplay: GearCardData
+  currentSurvivor: Survivor
+  setCurrentSurvivor: (survivorData: Survivor) => void
+  disorderDeck: TextCardData[]
 }
 
 const context = {} as KdmContext
@@ -26,12 +26,29 @@ export const KdmContextProvider = (props: any) => {
     new GearCardData('', ARMOR_LOC.NONE, [], [], [])
   )
   const [viewWidth, setViewWidth] = useState(window.innerWidth)
-  const [currentSurvivor, setCurrentSurvivor] = useState<Survivor>()
+  const [currentSurvivor, setCurrentSurvivor] = useState<Survivor>(
+    getStartingSurvivor('', true)
+  )
   //currently this only populates with base game, would need to add functionality for expansions.
-  const [disorderDeck, setDisorderDeck] = useState<TextCardData[]>(disordersBaseGame)
+  const [disorderDeck, setDisorderDeck] = useState<TextCardData[]>(
+    disordersBaseGame
+  )
+
+  // useEffect(() => {
+  //   console.log(`KDM CONTEXT CURRENT SURVIVOR"`)
+  //   console.log(
+  //     `experience: ${JSON.stringify(
+  //       currentSurvivor.experiences
+  //     )}`
+  //   )
+  //   console.log(
+  //     `disorders: ${JSON.stringify(
+  //       currentSurvivor.disorders
+  //     )}`
+  //   )
+  // }, [currentSurvivor, setCurrentSurvivor])
 
   //TODO: move card interaction stuff to a separate handler class;
-
   const gearCardInteraction = (cardData: CardData, setTarget: boolean) => {
     if (setTarget) {
       setGearCardTarget({ ...cardData, isSelected: true })

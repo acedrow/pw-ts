@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { BaseFlexDiv } from './CommonStyled'
 import { TextCardData } from '../../../data/cards/TextCardData'
 import _ from 'lodash'
 import { Select, MenuItem } from '@material-ui/core'
 import shortid from 'shortid'
 import styled from 'styled-components'
+import { KdmContext } from '../../../KdmContext'
 
 /* 
 The group can either display a fixed number of Select cells (Fighting Arts and Disorders), or display one more select cell than the current number of attributes (Impairments and Abilities)
@@ -12,16 +13,18 @@ The group can either display a fixed number of Select cells (Fighting Arts and D
 interface SelectGroupProps {
   rows: number | 'n+1'
   cardDeck: TextCardData[]
-  survivorHas: TextCardData[] | undefined
+  currentValues: TextCardData[] | undefined
+  valueChangeCallback: (currentValues: TextCardData[]) => void;
 }
 
 export default (props: SelectGroupProps) => {
   const [currentValues, setCurrentValues] = useState<TextCardData[]>(
-    props.survivorHas || []
+    props.currentValues || []
   )
 
   useEffect(() => {
-    console.log(currentValues)
+    console.log(`Selectgroup UE: ${currentValues}`)
+    props.valueChangeCallback(currentValues)
   }, [currentValues])
 
   const handleChange = (
@@ -60,11 +63,13 @@ export default (props: SelectGroupProps) => {
               onChange={(e) => handleChange(i, e)}
               autoWidth
             >
-              {props.cardDeck.map((card) => (
-                <MenuItem key={shortid()} value={card.name}>
-                  {card.name}
-                </MenuItem>
-              ))}
+              {props.cardDeck.map((card) => {
+                return (
+                  <MenuItem key={shortid()} value={card.name}>
+                    {card.name}
+                  </MenuItem>
+                )
+              })}
             </Select>
           ))}
       </BaseFlexDiv>
@@ -72,6 +77,4 @@ export default (props: SelectGroupProps) => {
   )
 }
 
-const OuterContainer = styled(BaseFlexDiv)`
-
-`
+const OuterContainer = styled(BaseFlexDiv)``

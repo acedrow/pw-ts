@@ -47,11 +47,6 @@ export const GearCard = (props: {
   }, [viewWidth])
 
   const getCardLength = () => {
-    console.log(
-      `getCardLength ${viewWidth} / ${displayProportion} = ${
-        viewWidth / displayProportion
-      }`
-    )
     return viewWidth / displayProportion
   }
 

@@ -5,7 +5,7 @@ import {
   Survivor,
   getSurvivorName,
 } from '../../../data/survivor/SurvivorData'
-import HuntXp from './Experiences'
+import Experiences from './Experiences'
 import { StatsSectionContainer } from './StatsSectionContainer'
 import SurvivalActions from './SurvivalActions'
 import Defenses from './Defenses'
@@ -43,7 +43,7 @@ export default function (props: { currentSurvivor: Survivor | undefined }) {
             // startsCollapsed={true}
             
           >
-            <HuntXp/>
+            <Experiences/>
           </StatsSectionContainer>
 
           <StatsSectionContainer
