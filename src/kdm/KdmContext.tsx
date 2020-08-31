@@ -41,16 +41,18 @@ export const KdmContextProvider = (props: any) => {
     //     currentSurvivor.experiences
     //   )}`
     // )
+    
     // console.log(
     //   `disorders: ${JSON.stringify(
     //     currentSurvivor.disorders
     //   )}`
     // )
-    console.log(
-      `defense: ${JSON.stringify(
-        currentSurvivor.defenseStats
-      )}`
-    )
+
+    // console.log(
+    //   `defense: ${JSON.stringify(
+    //     currentSurvivor.defenseStats
+    //   )}`
+    // )
   }, [currentSurvivor, setCurrentSurvivor])
 
   //TODO: move card interaction stuff to a separate handler class;

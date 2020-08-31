@@ -30,7 +30,6 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
 
   return (
     // TODO: swiping along the name should switch survivors
-
     <OuterContainer
       id="statSection"
       flexDir="column"
@@ -49,6 +48,7 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
           {props.titleH1 && (
             <>
               <TitleH1> {props.title}</TitleH1>{' '}
+              {/* FIXME: symbol position is broken on desktop display, and the position seems wonky */}
               <HeaderButton fontSize={'24px'} onClick={getNewH1Symbol}>
                 {h1Symbols[h1SymbolIndex]}
               </HeaderButton>
