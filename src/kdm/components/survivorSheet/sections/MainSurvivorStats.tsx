@@ -8,6 +8,7 @@ import SurvivalActions from './SurvivalActions'
 import Defenses from './Defenses'
 import ArtsAndAbilities from './ArtsAndAbilities'
 import DisordersAndImpairments from './DisordersAndImpairments'
+import NameHeaderSection from './nameHeader/NameHeaderSection'
 
 export default function (props: { currentSurvivor: Survivor | undefined }) {
   return (
@@ -24,12 +25,7 @@ export default function (props: { currentSurvivor: Survivor | undefined }) {
     <OuterContainer>
       {props.currentSurvivor && (
         <div>
-          <StatsSectionContainer
-            title={getSurvivorName(props.currentSurvivor.demographics)}
-            titleH1
-            bottomBorder={true}
-            collapsible={false}
-          />
+          <NameHeaderSection />
 
           <Experiences />
 
@@ -45,13 +41,6 @@ export default function (props: { currentSurvivor: Survivor | undefined }) {
     </OuterContainer>
   )
 }
-
-const SurvivorStatsSection = styled.div``
-
-const NameContainer = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-`
 
 const OuterContainer = styled.div`
   background-color: ${KDM_DARK_GREY};

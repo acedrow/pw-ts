@@ -64,7 +64,7 @@ export const StatsSectionContainer: FunctionComponent<SectionProps> = (
           )}
         </BaseFlexDiv>
       )}
-      {!collapsed && !props.titleH1 && <Content> {props.children}</Content>}
+      {!collapsed && <Content> {props.children}</Content>}
     </OuterContainer>
   )
 }

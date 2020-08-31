@@ -18,7 +18,7 @@ import handleXpChange from './handleXpChange'
 
 //TODO: add courage/understanding abilities + footer descriptions
 export default function () {
-  const { currentSurvivor, setCurrentSurvivor } = useContext(KdmContext)
+  const { currentSurvivor } = useContext(KdmContext)
 
   return (
     <StatsSectionContainer

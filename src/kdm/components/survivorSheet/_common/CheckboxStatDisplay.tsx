@@ -9,6 +9,7 @@ interface CheckboxProps {
   value: number
   maxValue: number
   label?: string
+  alwaysShowFooter?: boolean
   descFooter?: JSX.Element
   checkHighlights?: number[]
   valueButtons?: boolean
@@ -17,7 +18,7 @@ interface CheckboxProps {
 }
 
 export default (props: CheckboxProps) => {
-  const [showFooter, setShowFooter] = useState(false)
+  const [showFooter, setShowFooter] = useState(props.alwaysShowFooter || false)
 
   const checkInitValue = (val: number, maxVal: number) => {
     if (val < -1 || val > maxVal) {
@@ -69,10 +70,12 @@ export default (props: CheckboxProps) => {
         <BaseFlexDiv flexDir="row">
           <Label>{props.label}</Label>
           &nbsp;
-          <TooltipButton
-            tooltipOpen={showFooter}
-            setTooltipOpen={setShowFooter}
-          />
+          {!props.alwaysShowFooter && (
+            <TooltipButton
+              tooltipOpen={showFooter}
+              setTooltipOpen={setShowFooter}
+            />
+          )}
         </BaseFlexDiv>
       )}
       <CheckboxDiv flexDir="row">
@@ -94,7 +97,9 @@ export default (props: CheckboxProps) => {
           <CounterButton onClick={() => setValue(value + 1)}>+</CounterButton>
         )}
       </CheckboxDiv>
-      {props.descFooter && showFooter && <DescFooter>{props.descFooter}</DescFooter>}
+      {props.descFooter && (props.alwaysShowFooter || showFooter) && (
+        <DescFooter>{props.descFooter}</DescFooter>
+      )}
     </OuterContainer>
   )
 }

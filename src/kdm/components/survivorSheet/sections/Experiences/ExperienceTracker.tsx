@@ -10,7 +10,12 @@ import { KdmContext } from '../../../../KdmContext'
 import CheckboxStatDisplay from '../../_common/CheckboxStatDisplay'
 import handleXpChange from './handleXpChange'
 
-export default (props: { xpType: XP_TYPE }) => {
+interface XpTrackerProps {
+  xpType: XP_TYPE,
+  alwaysShowFooter?: boolean,
+}
+
+export default (props: XpTrackerProps) => {
   const { currentSurvivor, setCurrentSurvivor } = useContext(KdmContext)
   return (
     <>
@@ -22,6 +27,7 @@ export default (props: { xpType: XP_TYPE }) => {
           descFooter={HuntXpFooter}
           checkboxMargins={true}
           checkHighlights={HUNT_XP_MILESTONES}
+          alwaysShowFooter={props.alwaysShowFooter}
           changeCallback={(value: number) => {
             handleXpChange(
               value,
@@ -40,6 +46,7 @@ export default (props: { xpType: XP_TYPE }) => {
           descFooter={UnderstandingFooter}
           checkboxMargins={true}
           checkHighlights={COURAGE_UNDERSTANDING_MILESTONES}
+          alwaysShowFooter={props.alwaysShowFooter}
           changeCallback={(value: number) => {
             handleXpChange(
               value,
@@ -58,6 +65,7 @@ export default (props: { xpType: XP_TYPE }) => {
           descFooter={CourageFooter}
           checkboxMargins={true}
           checkHighlights={COURAGE_UNDERSTANDING_MILESTONES}
+          alwaysShowFooter={props.alwaysShowFooter}
           changeCallback={(value: number) => {
             handleXpChange(
               value,

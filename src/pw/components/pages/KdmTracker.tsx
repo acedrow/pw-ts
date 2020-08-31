@@ -18,7 +18,8 @@ export const KdmTracker = () => {
       <InnerPageContainer id={'kdmTrackerInner'}>
         <KdmContextProvider>
           <ViewWidthTracker />
-          <GearDrawer />
+          {/* TODO: move gearDrawer to survivor page or something */}
+           <GearDrawer /> 
           <SurvivorsPage />
           <BottomNav />
         </KdmContextProvider>

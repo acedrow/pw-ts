@@ -1,17 +1,14 @@
 import {
-  Button,
   List,
-
-
   SwipeableDrawer
 } from '@material-ui/core'
 import React, { SyntheticEvent, useState } from 'react'
+import shortid from 'shortid'
 import styled from 'styled-components'
 import { KDM_PAGE_BACKGROUND } from '../../../pw/components/styling/color'
-import { getGearList } from '../../data/gear/gearList'
 import { GearCardData } from '../../data/gear/CardData'
+import { getGearList } from '../../data/gear/gearList'
 import { GearDrawerCategory } from './GearDrawerCategory'
-import shortid from 'shortid'
 
 export const getGearArrayFromData = () => {
   const temp = Array.from(getGearList().values())

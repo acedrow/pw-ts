@@ -1,19 +1,14 @@
 import * as React from 'react'
+import styled from 'styled-components'
 import { GearCard, GEAR_CARD_DISPLAY_TYPE } from '../components/gearCard/GearCard'
 import {
-  CardData,
-  GearCardData,
-  ARMOR_LOC,
-  AFF_POS,
-  AFFINITY_COLOR,
-  CraftingCost,
+  AFFINITY_COLOR, AFF_POS, ARMOR_LOC, CardData,
+  CraftingCost, GearCardData
 } from '../data/gear/CardData'
-import { getGearCard } from '../data/gear/gearList'
 import { CRAFT_MAT } from '../data/gear/craftingMaterials'
-import { Survivor, Demographics, getStartingSurvivor } from '../data/survivor/SurvivorData';
-import MainSurvivorStats from '../components/survivorSheet/mainStats/MainSurvivorStats'
-import styled from 'styled-components'
-import { KdmContext } from '../KdmContext';
+import { getStartingSurvivor } from '../data/survivor/SurvivorData'
+import { KdmContext } from '../KdmContext'
+import MainSurvivorStats from '../components/survivorSheet/sections/MainSurvivorStats'
 
 export const SurvivorsPage = () => {
   const { currentSurvivor, setCurrentSurvivor } = React.useContext(KdmContext)
