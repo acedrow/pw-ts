@@ -14,55 +14,15 @@ interface CheckboxProps {
   checkHighlights?: number[]
   valueButtons?: boolean
   checkboxMargins?: boolean
-  changeCallback?: (value: number) => void
+  changeCallback: (value: number) => void
 }
 
 export default (props: CheckboxProps) => {
   const [showFooter, setShowFooter] = useState(props.alwaysShowFooter || false)
 
-  const checkInitValue = (val: number, maxVal: number) => {
-    if (val < -1 || val > maxVal) {
-      return 0
-    }
-    return val
-  }
-
-  const getCheckboxArray = (value: number, maxValue: number) => {
-    let checked: boolean[] = []
-    _.times(maxValue, (i) => {
-      checked.push(i < value ? true : false)
-    })
-    return checked
-  }
-
-  const [value, setValue] = useState(
-    checkInitValue(props.value, props.maxValue)
-  )
-  const [checkboxArray, setCheckboxArray] = useState<boolean[]>(
-    getCheckboxArray(props.value, props.maxValue)
-  )
-
   useEffect(() => {
-    setCheckboxArray(getCheckboxArray(value, props.maxValue))
-    if (props.changeCallback) {
-      props.changeCallback(value)
-    }
-  }, [value, setCheckboxArray])
-
-  const handleCheckboxClick = (index: number) => {
-    //The checkbox display will jump to whichever checkbox is clicked
-    // if (index < value) {
-    //   setValue(index)
-    // } else {
-    //   setValue(index+1)
-
-    //this functions more like a counter, tapping right of the last filled box increases value, tapping on it or left of it decreases value
-    if (index < value) {
-      setValue(value - 1)
-    } else {
-      setValue(value + 1)
-    }
-  }
+    console.log(`xbox props value: ${props.value}`)
+  }, [props.value])
 
   return (
     <OuterContainer flexDir="column">
@@ -78,23 +38,31 @@ export default (props: CheckboxProps) => {
           )}
         </BaseFlexDiv>
       )}
+
       <CheckboxDiv flexDir="row">
         {props.valueButtons && (
-          <CounterButton onClick={() => setValue(value - 1)}>-</CounterButton>
+          <CounterButton onClick={() => props.changeCallback(props.value - 1)}>
+            -
+          </CounterButton>
         )}
-
-        {checkboxArray.map((checked, index) => (
-          <CheckBox
-            index={index}
-            clickCallback={props.valueButtons ? undefined : handleCheckboxClick}
-            checked={checked}
-            highlight={props.checkHighlights?.includes(index + 1)}
-            {...props}
-          />
-        ))}
+        {_.times(props.maxValue, (index) => {
+          return (
+            <CheckBox
+              index={index}
+              clickCallback={
+                props.valueButtons ? undefined : props.changeCallback
+              }
+              checked={index < props.value}
+              highlight={props.checkHighlights?.includes(index + 1)}
+              {...props}
+            />
+          )
+        })}
 
         {props.valueButtons && (
-          <CounterButton onClick={() => setValue(value + 1)}>+</CounterButton>
+          <CounterButton onClick={() => props.changeCallback(props.value + 1)}>
+            +
+          </CounterButton>
         )}
       </CheckboxDiv>
       {props.descFooter && (props.alwaysShowFooter || showFooter) && (

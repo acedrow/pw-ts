@@ -35,7 +35,7 @@ export const KdmContextProvider = (props: any) => {
   )
 
   useEffect(() => {
-    console.log(`KDM CONTEXT CURRENT SURVIVOR:`)
+    //console.log(`KDM CONTEXT CURRENT SURVIVOR:`)
     // console.log(
     //   `experience: ${JSON.stringify(
     //     currentSurvivor.experiences

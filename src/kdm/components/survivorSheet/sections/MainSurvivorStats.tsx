@@ -28,7 +28,7 @@ export default function (props: { currentSurvivor: Survivor | undefined }) {
           <NameHeaderSection />
 
           <Experiences />
-
+          
           <SurvivalActions />
 
           <ArtsAndAbilities />

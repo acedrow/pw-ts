@@ -1,9 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { BLOOD_RED } from '../../../../../pw/components/styling/color'
 import {
-  COURAGE_UNDERSTANDING_MILESTONES, HUNT_XP_MILESTONES,
-  MAX_COURAGE_UNDERSTANDING, MAX_HUNT_XP
+  COURAGE_UNDERSTANDING_MILESTONES,
+  HUNT_XP_MILESTONES,
+  MAX_COURAGE_UNDERSTANDING,
+  MAX_HUNT_XP,
 } from '../../../../data/GAME_CONST'
 import { XP_TYPE } from '../../../../data/survivor/ExperiencesData'
 import { KdmContext } from '../../../../KdmContext'
@@ -11,12 +13,17 @@ import CheckboxStatDisplay from '../../_common/CheckboxStatDisplay'
 import handleXpChange from './handleXpChange'
 
 interface XpTrackerProps {
-  xpType: XP_TYPE,
-  alwaysShowFooter?: boolean,
+  xpType: XP_TYPE
+  alwaysShowFooter?: boolean
 }
 
 export default (props: XpTrackerProps) => {
   const { currentSurvivor, setCurrentSurvivor } = useContext(KdmContext)
+
+  useEffect(() => {
+    console.log(`ExperienceTracker ue`)
+  }, [currentSurvivor, setCurrentSurvivor])
+
   return (
     <>
       {props.xpType === XP_TYPE.HUNT && (
@@ -94,7 +101,7 @@ const HuntXpFooter = (
   </>
 )
 
- const CourageFooter = (
+const CourageFooter = (
   <>
     <RedSpan>☑&nbsp;</RedSpan>
     <span> = Bold 📖 </span>

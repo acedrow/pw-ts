@@ -5,26 +5,50 @@ export default (
   value: number,
   xpType: XP_TYPE,
   currentSurvivor: Survivor | undefined,
-  setCurrentSurvivor: (survivor: Survivor) => void,
+  setCurrentSurvivor: (survivor: Survivor) => void
 ) => {
+  const calcNewValue = (input: number, current: number) => {
+    if (input < current) {
+      return current - 1
+    }
+    return current + 1
+  }
+
   if (currentSurvivor) {
     let tempSurvivor = currentSurvivor
     let experiences = currentSurvivor.experiences
-
+    console.log(
+      `handleXpChange: value:${value}, survivor hunt xp: ${currentSurvivor.experiences.huntXp}`
+    )
     switch (xpType) {
       case XP_TYPE.HUNT:
-        experiences = { ...experiences, huntXp: value }
+        experiences = {
+          ...experiences,
+          huntXp: calcNewValue(value, currentSurvivor.experiences.huntXp),
+        }
         break
       case XP_TYPE.COURAGE:
         experiences = {
           ...experiences,
-          courage: { ...experiences.courage, value: value },
+          courage: {
+            ...experiences.courage,
+            value: calcNewValue(
+              value,
+              currentSurvivor.experiences.courage.value
+            ),
+          },
         }
         break
       case XP_TYPE.UNDERSTANDING:
         experiences = {
           ...experiences,
-          understanding: { ...experiences.understanding, value: value },
+          understanding: {
+            ...experiences.understanding,
+            value: calcNewValue(
+              value,
+              currentSurvivor.experiences.understanding.value
+            ),
+          },
         }
         break
     }
