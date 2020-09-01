@@ -125,7 +125,7 @@ const OuterContainer = styled(BaseFlexDiv)<{
   border-bottom: ${(props) => (props.bottomBorder ? '1px solid gray' : 'none')};
    background: ${(props) =>
     props.gradient
-      ? 'linear-gradient(225deg, rgba(38,32,18,1) 0%, rgba(40,35,11,1) 9%, rgba(45,50,62,1) 48%, rgba(75,109,117,1) 100%);' : DARK_GREY}; 
+      ? DULL_RED_ORANGE_GRAY_DIENT : DARK_GREY}; 
 `
 
 const TitleH1 = styled.h1`

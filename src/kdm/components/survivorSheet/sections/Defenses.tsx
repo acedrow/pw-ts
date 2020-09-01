@@ -1,23 +1,23 @@
 import _ from 'lodash'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { DefenseType, DEFENSE_NAME } from '../../../data/survivor/SurvivorData'
 import { KdmContext } from '../../../KdmContext'
 import CheckboxStatDisplay from '../_common/CheckboxStatDisplay'
 import { BaseFlexDiv, CounterButton } from '../_common/CommonStyled'
 import { StatsSectionContainer } from './StatsSectionContainer'
+import { DEFENSE_NAME, DefenseType } from '../../../data/survivor/Condition'
 
 //TODO: add 'clear all' button
-export default function (props: { defenseStats?: DefenseType[] }) {
+export default function () {
   const { currentSurvivor, setCurrentSurvivor } = useContext(KdmContext)
-  const [defenseStats, setDefenseStats] = useState(currentSurvivor.defenseStats)
+  const [defenses, setDefenses] = useState(currentSurvivor.condition.defenses)
 
   useEffect(() => {
-    console.log(`defense stats: ${JSON.stringify(defenseStats)}`)
+    console.log(`defense stats: ${JSON.stringify(defenses)}`)
     let tempSurvivor = currentSurvivor
-    tempSurvivor.defenseStats = defenseStats
+    tempSurvivor.condition.defenses = defenses
     setCurrentSurvivor({ ...tempSurvivor })
-  }, [defenseStats, setDefenseStats])
+  }, [defenses, setDefenses])
 
   const handleStatChange = (
     name: DEFENSE_NAME,
@@ -28,8 +28,8 @@ export default function (props: { defenseStats?: DefenseType[] }) {
       return
     }
 
-    setDefenseStats(
-      defenseStats.map((currStat) => {
+    setDefenses(
+      defenses.map((currStat) => {
         if (currStat.name === name) {
           return {
             name: name,
@@ -50,7 +50,7 @@ export default function (props: { defenseStats?: DefenseType[] }) {
       collapsible={true}
     >
       <BaseFlexDiv flexDir="row" id="defensesContainer">
-        {defenseStats.map((currStat: DefenseType) => {
+        {defenses.map((currStat: DefenseType) => {
           const maxWoundsValue =
             currStat.name === DEFENSE_NAME.BRAIN ||
             currStat.name === DEFENSE_NAME.HEAD

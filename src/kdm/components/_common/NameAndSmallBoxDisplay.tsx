@@ -11,54 +11,57 @@ interface Props {
   label: string
   value: number
   milestones: number[]
+  dontShowBoxes?: boolean
   xpType?: XP_TYPE
 }
 
 export default (props: Props) => {
   const [showModal, setShowModal] = useState(false)
   return (
-    <OuterContainer
-      flexDir="row"
-      onClick={() => {
-        if (!showModal) {
-          setShowModal(!showModal)
-        }
-      }}
-    >
-      {props.xpType && (
-        <>
-          <TextDisplay>{props.label}</TextDisplay>
-          <Modal open={showModal} onClose={() => setShowModal(false)}>
-            <ModalDiv>
-              <ExperienceTracker
-                xpType={props.xpType}
-                alwaysShowFooter={true}
-              />
-            </ModalDiv>
-          </Modal>
-        </>
-      )}
-      <ValueAndBoxHolder flexDir={'row'}>
-        <ValueSpan>{props.value}</ValueSpan>
-        <SmallBoxHolder flexDir={'row'}>
-          {props.value !== undefined &&
-            _.times(props.milestones.length, (index) => {
-              return (
-                <SmallBoxDiv
-                  highlight={props.value >= props.milestones[index]}
-                />
-              )
-            })}
-        </SmallBoxHolder>
-      </ValueAndBoxHolder>
-    </OuterContainer>
+    <>
+      <OuterContainer
+        flexDir="row"
+        onClick={() => {
+          if (!showModal) {
+            setShowModal(!showModal)
+          }
+        }}
+      >
+        {props.xpType && (
+          <>
+            <TextDisplay>{props.label}</TextDisplay>
+          </>
+        )}
+        {!props.dontShowBoxes && (
+          <ValueAndBoxHolder flexDir={'row'}>
+            <ValueSpan>{props.value}</ValueSpan>
+            <SmallBoxHolder flexDir={'row'}>
+              {props.value !== undefined &&
+                _.times(props.milestones.length, (index) => {
+                  return (
+                    <SmallBoxDiv
+                      highlight={props.value >= props.milestones[index]}
+                    />
+                  )
+                })}
+            </SmallBoxHolder>
+          </ValueAndBoxHolder>
+        )}
+      </OuterContainer>
+      <Modal open={showModal} onClose={() => setShowModal(false)}>
+        <ModalDiv>
+          {props.xpType && (
+            <ExperienceTracker xpType={props.xpType} alwaysShowFooter={true} />
+          )}
+        </ModalDiv>
+      </Modal>
+    </>
   )
 }
 
 const TextDisplay = styled.span`
   width: 100%;
   background: transparent;
-
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   color: white;
   font-size: 14px;
@@ -93,6 +96,7 @@ const OuterContainer = styled(BaseFlexDiv)`
 
 const ModalDiv = styled.div`
   border: 1px solid gray;
+  background-color: ${DARK_GREY};
   margin: 10px;
   color: white;
   text-align: center;

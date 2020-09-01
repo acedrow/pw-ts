@@ -1,5 +1,9 @@
 import { TextCardData } from '../cards/TextCardData'
 import { Experiences, startingExperiences } from './ExperiencesData'
+import { Weapon, WEAPON_TYPE, STARTING_WEAPON_STATS } from './WeaponData';
+import SurvivalActions from '../../components/survivorSheet/sections/SurvivalActions'
+import { Condition, STARTING_CONDITION } from './Condition';
+
 
 export interface Demographics {
   firstname: string
@@ -42,55 +46,32 @@ export const startingSurvivalActions = {
   endure: false,
 }
 
-export const enum DEFENSE_NAME {
-  BRAIN = 'brain',
-  HEAD = 'head',
-  ARMS = 'arms',
-  LEGS = 'legs',
-  BODY = 'body',
-  WAIST = 'waist',
-}
-
-export interface DefenseType {
-  name: DEFENSE_NAME
-  value: number
-  checkBoxes: boolean[]
-}
-
-const BLANK_DEFENSE_STATS: DefenseType[] = [
-  { name: DEFENSE_NAME.BRAIN, value: 0, checkBoxes: [false] },
-  { name: DEFENSE_NAME.HEAD, value: 0, checkBoxes: [false] },
-  { name: DEFENSE_NAME.ARMS, value: 0, checkBoxes: [false, false] },
-  { name: DEFENSE_NAME.LEGS, value: 0, checkBoxes: [false, false] },
-  { name: DEFENSE_NAME.BODY, value: 0, checkBoxes: [false, false] },
-  { name: DEFENSE_NAME.WAIST, value: 0, checkBoxes: [false, false] },
-]
-
 export class Survivor {
   demographics: Demographics
   attributes: Attributes
   experiences: Experiences // 16 xp slots, age at 2, 6, 10, 15, retirement @ 16
   actions: SurvivalActions
-  insanity: number
-  defenseStats: DefenseType[]
+  weapon: Weapon
+  condition: Condition;
   disorders: TextCardData[]
+
   //TODO: add disorders here - need to use getters and setters where necessary to enforce 3 limit for FAs and disorders
 
   constructor(
     demographics: Demographics,
     attributes: Attributes | undefined,
     experiences: Experiences | undefined,
-    insanity: number,
+    weapon: Weapon | undefined,
     actions: SurvivalActions | undefined,
-    defenseStats: DefenseType[] | undefined,
+    condition: Condition | undefined,
     disorders: TextCardData[] | undefined,
   ) {
     this.demographics = demographics
     this.attributes = attributes || startingAttributes
     this.experiences = experiences || startingExperiences
-    this.insanity = insanity
+    this.weapon = weapon || STARTING_WEAPON_STATS
     this.actions = actions || startingSurvivalActions
-    this.defenseStats = defenseStats || BLANK_DEFENSE_STATS
+    this.condition = condition || STARTING_CONDITION
     this.disorders = disorders || []
   }
 
@@ -117,10 +98,10 @@ export const getStartingSurvivor = (
     },
     undefined,
     undefined,
-    5,
     undefined,
-    undefined, 
     undefined,
+    undefined,
+    undefined
   )
 }
 
