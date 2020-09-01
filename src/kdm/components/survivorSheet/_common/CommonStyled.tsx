@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {
-  KDM_DARK_GREY,
+  DARK_GREY,
   BLOOD_RED,
 } from '../../../../pw/components/styling/color'
 
@@ -25,7 +25,7 @@ export const CounterButton = styled.button<CounterButtonProps>`
   line-height: 1em;
   text-indent: -0.1em;
 
-  background-color: ${KDM_DARK_GREY};
+  background-color: ${DARK_GREY};
 `
 export const BaseFlexDiv = styled.div<{
   flexDir: 'row' | 'column'

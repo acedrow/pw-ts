@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { KDM_DARK_GREY } from '../../pw/components/styling/color';
+import { DARK_GREY } from '../../pw/components/styling/color';
 import { BaseFlexDiv } from './survivorSheet/_common/CommonStyled';
 
 export const BottomNav = () => {
@@ -28,7 +28,7 @@ export const BottomNav = () => {
 
 const BottomNavLink = styled(Link)<{ gridcol: number }>`
   padding: 5px;
-  background-color: ${KDM_DARK_GREY};
+  background-color: ${DARK_GREY};
   border: 1px solid gray;
   grid-column-start: ${(props) => props.gridcol};
   grid-column-end: ${(props) => props.gridcol};

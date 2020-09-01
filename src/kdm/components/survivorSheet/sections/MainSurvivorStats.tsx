@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { KDM_DARK_GREY } from '../../../../pw/components/styling/color'
+import { DARK_GREY } from '../../../../pw/components/styling/color'
 import { Survivor, getSurvivorName } from '../../../data/survivor/SurvivorData'
 import Experiences from './Experiences/ExperiencesSection'
 import { StatsSectionContainer } from './StatsSectionContainer'
@@ -43,6 +43,6 @@ export default function (props: { currentSurvivor: Survivor | undefined }) {
 }
 
 const OuterContainer = styled.div`
-  background-color: ${KDM_DARK_GREY};
+  background-color: ${DARK_GREY};
   font-size: 20px;
 `

@@ -13,6 +13,7 @@ export default () => {
       bottomBorder={true}
       collapsible={false}
       startsCollapsed={false}
+      gradient={true}
     > 
       <NameHeaderContent />
     </StatsSectionContainer>
